@@ -1,0 +1,45 @@
+@import 'tachyons';
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.image {
+  display: block;
+  height: 1500px;
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.ts {
+  text-shadow: 0 0 10px #000;
+}
+
+.fondito {
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 68%);
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/assets/fonts/oswald-bold.woff2') format('woff2'),
+    url('/assets/fonts/oswald-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('/assets/fonts/roboto-condensed-bold-italic.woff2') format('woff2'),
+    url('/assets/fonts/roboto-condensed-bold-italic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+.oswald {
+  font-family: 'Oswald', sans-serif;
+}
+
+.roboto-condensed {
+  font-family: 'Roboto Condensed', sans-serif;
+}

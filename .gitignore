@@ -1,0 +1,10 @@
+# files
+.DS_Store
+*.log
+env/development.env
+env/production.env
+
+# folders
+.tmp
+dist
+node_modules
