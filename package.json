@@ -1,6 +1,6 @@
 {
     "name": "tapa-ole",
-    "version": "1.10.0",
+    "version": "1.0.0",
     "description": "",
     "scripts": {
         "build-dev": "env-cmd ./env/development.env webpack",
