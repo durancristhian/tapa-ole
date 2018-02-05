@@ -10,17 +10,68 @@
     <title>tapa-ole</title>
 </head>
 
-<body class="bg-black-10 f6 f5-ns ma0 sans-serif">
-    <div class="center">
-        <div class="pv5 tc">
-            <input type="text" name="title" id="title" value="Con gusto a victoria">
-            <input type="text" name="subtitle" id="subtitle" value="Los Vue.js arrancaron perdiendo pero a los de amarillo se les congeló un poco el pecho. De la alegría, comieron un asado.">
-            <input type="file" id="files" name="files[]" multiple>
-            <button id="generate">Generar</button>
+<body class="f6 f5-ns ma0 sans-serif">
+    <div class="ph3 pv4 pv5-ns">
+        <div class="center mw8">
+            <h1 class="f3 f2-ns mv0">Armá tu tapa de Olé</h1>
+            <h2 class="flex items-end justify-start mb0 mt4">
+                <span class="f2 f1-ns mr2 mr3-ns">1.</span>
+                <span class="black-50 f5 f4-ns mb1 mb2-ns">Escribí el título y la bajada</span>
+            </h2>
+            <div class="flex mt4">
+                <div class="w-30">
+                    <label for="title" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Título</label>
+                </div>
+                <div class="w-70">
+                    <input type="text" name="title" id="title" value="" placeholder="Hasta 20 caracteres" class="b--black-20 ba db ph3 pv2 w-100">
+                </div>
+            </div>
+            <div class="flex mt2">
+                <div class="w-30">
+                    <label for="subtitle" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Bajada</label>
+                </div>
+                <div class="w-70">
+                    <input type="text" name="subtitle" id="subtitle" value="" placeholder="Hasta 100 caracteres" class="b--black-20 ba db ph3 pv2 w-100">
+                </div>
+            </div>
+            <h2 class="flex items-end justify-start mb0 mt4">
+                <span class="f2 f1-ns mr2 mr3-ns">2.</span>
+                <span class="black-50 f5 f4-ns mb1 mb2-ns">Elegí la foto</span>
+            </h2>
+            <div class="flex mt4">
+                <div class="w-30">
+                    <label for="files" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Foto</label>
+                </div>
+                <div class="w-70 overflow-hidden">
+                    <input name="files" type="file" id="files" name="files[]" multiple class="ph3 pv2">
+                </div>
+            </div>
+            <h2 class="flex items-end justify-start mb0 mt4">
+                <span class="f2 f1-ns mr2 mr3-ns">3.</span>
+                <span class="black-50 f5 f4-ns mb1 mb2-ns">Compartirla con tus amigos</span>
+            </h2>
+            <div class="flex mt4">
+                <div class="w-30">
+                    <label for="download" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">
+                        <img src="https://icongr.am/jam/download.svg" alt="Obtener link" class="h1">
+                    </label>
+                </div>
+                <div class="w-70">
+                    <button id="download" class="b b--black-20 ba bg-main black-80 pointer pv2 tc ttu w4">Descargar</button>
+                </div>
+            </div>
+            <div class="flex mt2">
+                <div class="w-30">
+                    <label for="link" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">
+                        <img src="https://icongr.am/jam/link.svg" alt="Obtener link" class="h1">
+                    </label>
+                </div>
+                <div class="w-70">
+                    <input type="text" readonly name="link" id="link" value="" placeholder="" class="b--black-20 ba db ph3 pv2 w-100">
+                </div>
+            </div>
         </div>
-        <div class="pb5">
-            <div id="cover" class="image"></div>
-        </div>
+        <div id="user-cover" class="center mv4 user-image"></div>
     </div>
 </body>
 
