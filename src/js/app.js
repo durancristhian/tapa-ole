@@ -2,6 +2,7 @@ const domtoimage = require('dom-to-image');
 
 let downloadEl;
 let filesEl;
+let linkEl;
 let subtitleEl;
 let titleEl;
 let userCoverEl;
@@ -55,15 +56,50 @@ function handleFileSelect(event) {
                         </div>
                     </div>
                 `;
+
+                postToImgur();
             };
         })(f);
         reader.readAsDataURL(f);
     }
 }
 
+function postToImgur() {
+    domtoimage.toBlob(document.getElementById('export')).then((blob) => {
+        linkEl.value = 'Subiendo...';
+
+        var data = new FormData();
+        data.append('image', blob);
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open('POST', 'https://api.imgur.com/3/image', true);
+        xhttp.setRequestHeader('Authorization', 'Client-ID bff2f3408c864bc');
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4) {
+                if (this.status >= 200 && this.status < 300) {
+                    var result = '';
+
+                    try {
+                        var response = JSON.parse(this.responseText);
+
+                        result = response.data.link;
+                    } catch (err) {
+                        // eslint-disable-next-line
+                        console.error(error);
+                    }
+
+                    linkEl.value = result;
+                }
+            }
+        };
+        xhttp.send(data);
+    });
+}
+
 export function init() {
     downloadEl = document.querySelector('#download');
     filesEl = document.querySelector('#files');
+    linkEl = document.querySelector('#link');
     subtitleEl = document.querySelector('#subtitle');
     titleEl = document.querySelector('#title');
     userCoverEl = document.querySelector('#user-cover');

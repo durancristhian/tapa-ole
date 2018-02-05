@@ -18,6 +18,12 @@ body {
     background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 65%);
 }
 
+.hide {
+    left: -9999px !important;
+    position: absolute !important;
+    top: -9999px !important;
+}
+
 .oswald {
     font-family: 'Oswald', sans-serif;
 }
