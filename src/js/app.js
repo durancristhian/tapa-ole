@@ -38,7 +38,7 @@ function handleFileSelect(event) {
 
                 userCoverEl.innerHTML = `
                     <div id="export" class="align-center bg-white flex flex-column justify-center relative tc user-image">
-                        <div class="absolute bottom-0 left-0 right-0 top-0" style="background-image: url('${imgSrc}'); z-index: 0;">
+                        <div class="absolute bg-center bottom-0 cover left-0 right-0 top-0" style="background-image: url('${imgSrc}'); z-index: 0;">
                         </div>
                         <div class="absolute bottom-0 left-0 right-0 top-0 tr" style="z-index: 1;">
                             <img src="${poweradeImage}" class="dib pr5 pt5 v-btm" style="width: 400px;" />
