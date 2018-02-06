@@ -11,30 +11,6 @@
 </head>
 
 <body class="f6 f5-ns ma0 sans-serif">
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.12&appId=290091588149631';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <script>window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-      return t;
-    }(document, "script", "twitter-wjs"));</script>
     <div class="ph3 pv4 pv5-ns">
         <div class="center mw8">
             <h1 class="f3 f2-ns mv0">Armá tu tapa de Olé</h1>
@@ -47,7 +23,7 @@
                     <label for="title" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Título</label>
                 </div>
                 <div class="w-70">
-                    <input type="text" name="title" id="title" value="" placeholder="Hasta 20 caracteres" class="b--black-20 ba db ph3 pv2 w-100">
+                    <input type="text" name="title" id="title" value="" placeholder="Recomendado hasta 20 caracteres" class="b--black-20 ba db ph3 pv2 w-100">
                 </div>
             </div>
             <div class="flex mt2">
@@ -55,7 +31,7 @@
                     <label for="subtitle" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Bajada</label>
                 </div>
                 <div class="w-70">
-                    <input type="text" name="subtitle" id="subtitle" value="" placeholder="Hasta 100 caracteres" class="b--black-20 ba db ph3 pv2 w-100">
+                    <input type="text" name="subtitle" id="subtitle" value="" placeholder="Recomendado hasta 100 caracteres" class="b--black-20 ba db ph3 pv2 w-100">
                 </div>
             </div>
             <h2 class="flex items-end justify-start mb0 mt4">
@@ -81,7 +57,7 @@
                     </label>
                 </div>
                 <div class="w-70">
-                    <button id="download" class="b b--black-20 ba bg-main black-80 pointer pv2 tc ttu w4">Descargar</button>
+                    <button id="download" class="b bg-main black-80 bn gradient-2 grow pointer pv2 tc text-shadow-2 ttu w4 white">Descargar</button>
                 </div>
             </div>
             <div class="flex mt2">
@@ -92,22 +68,22 @@
                 </div>
                 <div class="w-70">
                     <input type="text" readonly name="link" id="link" value="" placeholder="" class="b--black-20 ba db ph3 pv2 w-100">
-                </div>                
+                </div>
             </div>
             <div class="flex mt2">
-                <div class="w-30">                    
+                <div class="w-30">
                 </div>
                 <div class="w-70">
-                    <div id="fbshare"></div>                                        
-                </div>               
+                    <div id="facebook"></div>
+                </div>
             </div>
-            <div class="flex mt2" style="margin-top: 16px">
-                <div class="w-30">                    
+            <div class="flex mt2">
+                <div class="w-30">
                 </div>
                 <div class="w-70">
-                    <div id="twshare"></div>                                        
-                </div>               
-            </div>        
+                    <div id="twitter"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="user-cover" class="center hide mv4 user-image"></div>

@@ -10,12 +10,24 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.bg-facebook {
+    background-color: #3b5998;
+}
+
 .bg-main {
     background-color: var(--color-main);
 }
 
+.bg-twitter {
+    background-color: #00aced;
+}
+
 .gradient-1 {
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 65%);
+    background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 65%);
+}
+
+.gradient-2 {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, transparent 100%);
 }
 
 .hide {
@@ -36,25 +48,11 @@ body {
     text-shadow: 0 0 10px #000;
 }
 
+.text-shadow-2 {
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.75);
+}
+
 .user-image {
     height: 1500px;
     width: 1200px;
-}
-
-.fb-xfbml-parse-ignore {
-    text-decoration: none;
-    background-color: #3b5998;
-    color: #fff;
-    padding: 8px;
-    border-radius: 5px;
-    margin-top: 16px;
-}
-
-.twitter-share-button {
-    text-decoration: none;
-    background-color: #00aced;
-    color: #fff;
-    padding: 8px;
-    border-radius: 5px;
-    margin-top: 16px;
 }

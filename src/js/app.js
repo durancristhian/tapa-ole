@@ -3,10 +3,10 @@ const domtoimage = require('dom-to-image');
 let downloadEl;
 let filesEl;
 let linkEl;
-let fbEl;
-let twEl;
+let facebookEl;
 let subtitleEl;
 let titleEl;
+let twitterEl;
 let userCoverEl;
 
 const logoImage = 'assets/images/logo-ole.png';
@@ -91,23 +91,16 @@ function postToImgur() {
                     }
 
                     linkEl.value = result;
-                    fbEl.innerHTML = `
-                        <div class="fb-share-button" 
-                            data-href="${result}" 
-                            data-layout="button" data-size="large" 
-                            data-mobile-iframe="true">
-                                <a class="fb-xfbml-parse-ignore" target="_blank" 
-                                href="https://www.facebook.com/sharer/sharer.php?u=${result};src=sdkpreparse">
-                                Compartir <img src="https://icongr.am/fontawesome/facebook-official.svg?color=ffffff" alt="Compartir" class="h1">
-                                </a>
-                        </div>
+
+                    facebookEl.innerHTML = `
+                        <a class="b bg-facebook black-80 bn dib gradient-2 grow no-underline pointer pv2 tc text-shadow-2 ttu w4 white" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${result}">
+                            Facebook
+                        </a>
                     `;
-                    twEl.innerHTML = `
-                        <a class="twitter-share-button" 
-                        href="https://twitter.com/intent/tweet?original_referer=
-                        ${result}&ref_src=twsrc%5Etfw&text=${titleEl.value}&tw_p=tweetbutton
-                        &url=${result}">
-                        Tweet <img src="https://icongr.am/fontawesome/twitter.svg?color=ffffff" alt="Compartir" class="h1"></a>
+                    twitterEl.innerHTML = `
+                        <a class="b bg-twitter black-80 bn dib gradient-2 grow no-underline pointer pv2 tc text-shadow-2 ttu w4 white" target="_blank" href="https://twitter.com/intent/tweet?url=${result}">
+                            Twitter
+                        </a>
                     `;
                 }
             }
@@ -120,8 +113,8 @@ export function init() {
     downloadEl = document.querySelector('#download');
     filesEl = document.querySelector('#files');
     linkEl = document.querySelector('#link');
-    fbEl = document.querySelector('#fbshare');
-    twEl = document.querySelector('#twshare');
+    facebookEl = document.querySelector('#facebook');
+    twitterEl = document.querySelector('#twitter');
     subtitleEl = document.querySelector('#subtitle');
     titleEl = document.querySelector('#title');
     userCoverEl = document.querySelector('#user-cover');
