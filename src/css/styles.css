@@ -40,3 +40,21 @@ body {
     height: 1500px;
     width: 1200px;
 }
+
+.fb-xfbml-parse-ignore {
+    text-decoration: none;
+    background-color: #3b5998;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 16px;
+}
+
+.twitter-share-button {
+    text-decoration: none;
+    background-color: #00aced;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 16px;
+}
