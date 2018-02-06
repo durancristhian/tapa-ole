@@ -58,6 +58,7 @@ function handleFileSelect(event) {
                         </div>
                     </div>
                 `;
+                userCoverEl.classList.remove('hide');
 
                 postToImgur();
             };
