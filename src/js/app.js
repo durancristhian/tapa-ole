@@ -4,9 +4,12 @@ let downloadEl;
 let filesEl;
 let linkEl;
 let facebookEl;
+let loadingEl;
+let previewEl;
 let subtitleEl;
 let titleEl;
 let twitterEl;
+let userActionsEl;
 let userCoverEl;
 
 const logoImage = 'assets/images/logo-ole.png';
@@ -26,6 +29,8 @@ function downloadUserCover() {
 }
 
 function handleFileSelect(event) {
+    loadingEl.classList.remove('hide');
+
     var files = event.target.files;
 
     for (var i = 0, f; (f = files[i]); i++) {
@@ -58,7 +63,6 @@ function handleFileSelect(event) {
                         </div>
                     </div>
                 `;
-                userCoverEl.classList.remove('hide');
 
                 postToImgur();
             };
@@ -69,8 +73,6 @@ function handleFileSelect(event) {
 
 function postToImgur() {
     domtoimage.toBlob(document.getElementById('export')).then((blob) => {
-        linkEl.value = 'Subiendo...';
-
         var data = new FormData();
         data.append('image', blob);
 
@@ -93,16 +95,14 @@ function postToImgur() {
 
                     linkEl.value = result;
 
-                    facebookEl.innerHTML = `
-                        <a class="b bg-facebook black-80 bn dib gradient-2 grow no-underline pointer pv2 tc text-shadow-2 ttu w4 white" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${result}">
-                            Facebook
-                        </a>
-                    `;
-                    twitterEl.innerHTML = `
-                        <a class="b bg-twitter black-80 bn dib gradient-2 grow no-underline pointer pv2 tc text-shadow-2 ttu w4 white" target="_blank" href="https://twitter.com/intent/tweet?url=${result}">
-                            Twitter
-                        </a>
-                    `;
+                    facebookEl.href = `https://www.facebook.com/sharer/sharer.php?u=${result}`;
+                    twitterEl.href = `https://twitter.com/intent/tweet?text=${
+                        titleEl.value
+                    }&url=${result}`;
+
+                    previewEl.src = result;
+
+                    userActionsEl.classList.remove('hide');
                 }
             }
         };
@@ -115,10 +115,13 @@ export function init() {
     filesEl = document.querySelector('#files');
     linkEl = document.querySelector('#link');
     facebookEl = document.querySelector('#facebook');
+    loadingEl = document.querySelector('#loading');
+    previewEl = document.querySelector('#preview');
     twitterEl = document.querySelector('#twitter');
     subtitleEl = document.querySelector('#subtitle');
     titleEl = document.querySelector('#title');
     userCoverEl = document.querySelector('#user-cover');
+    userActionsEl = document.querySelector('#user-actions');
 
     downloadEl.addEventListener('click', downloadUserCover);
     filesEl.addEventListener('change', handleFileSelect, false);
