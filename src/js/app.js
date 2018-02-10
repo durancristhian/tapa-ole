@@ -71,6 +71,37 @@ function handleFileSelect(event) {
     }
 }
 
+function handleModal() {
+    var modal = document.getElementById('myModal');
+    var body = document.getElementsByTagName('BODY')[0];
+    var img = document.getElementById('preview');
+    var modalImg = document.getElementById('img01');
+    img.onclick = function() {
+        modal.style.display = 'block';
+        body.style.overflowY = 'hidden';
+        modalImg.src = this.src;
+    };
+
+    var span = document.getElementsByClassName('close')[0];
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+        body.style.overflowY = 'scroll';
+    };
+    modalImg.onclick = function() {
+        modal.style.display = 'none';
+        body.style.overflowY = 'scroll';
+    };
+    document.onkeydown = function(evt) {
+        if ('key' in evt) {
+            if (evt.keyCode == 27) {
+                modal.style.display = 'none';
+                body.style.overflowY = 'scroll';
+            }
+        }
+    };
+}
+
 function postToImgur() {
     domtoimage.toBlob(document.getElementById('export')).then((blob) => {
         var data = new FormData();
@@ -101,6 +132,7 @@ function postToImgur() {
                     }&url=${result}`;
 
                     previewEl.src = result;
+                    previewEl.onClick = handleModal();
 
                     userActionsEl.classList.remove('hide');
                 }
