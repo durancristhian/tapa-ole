@@ -1,12 +1,14 @@
 # tapa-ole
 
+[![Build Status](https://travis-ci.org/durancristhian/tapa-ole.svg?branch=master)](https://travis-ci.org/durancristhian/tapa-ole)
+
 :newspaper: Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉
 
 [tapa-ole.now.sh](https://tapa-ole.now.sh/)
 
 ## Development
 
-* Duplicate env/development-template.env, rename it as development.env and complete it with the right information.
+* Duplicate `template.env`, rename it as `local.env` and complete it with the right information.
 * Run the following commands:
 
     ```bash
@@ -14,10 +16,7 @@
     npm i
 
     # dev mode
-    npm run start-dev
-
-    # prod mode
-    npm run prod-dev
+    npm run start-local
     ```
 
 ## Licence

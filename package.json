@@ -3,22 +3,23 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "build-dev": "env-cmd ./env/development.env webpack",
-        "build-prod": "env-cmd ./env/production.env webpack",
+        "alias": "now alias --token=$NOW_TOKEN",
+        "build-prod": "NODE_ENV=production webpack",
+        "build-local": "env-cmd ./local.env webpack",
         "contributors-add": "all-contributors add",
         "contributors-generate": "all-contributors generate",
+        "deploy": "now --force --npm --token $NOW_TOKEN",
+        "postalias": "now rm tapa-ole --safe --token $NOW_TOKEN --yes",
         "start": "serve dist",
-        "start-dev": "env-cmd ./env/development.env webpack-dev-server --port 2467 --watch",
-        "start-prod": "env-cmd ./env/production.env webpack-dev-server --port 2467 --watch"
+        "start-local": "env-cmd ./local.env webpack-dev-server --port 3333 --watch"
     },
-    "files": [
-        "dist"
-    ],
     "now": {
         "alias": "tapa-ole",
         "env": {
             "NODE_ENV": "production"
         },
+        "files": ["dist"],
+        "name": "tapa-ole",
         "public": true
     },
     "author": "@durancristhian",
