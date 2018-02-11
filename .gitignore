@@ -1,7 +1,7 @@
 # files
 .DS_Store
 *.log
-!local.env
+local.env
 
 # folders
 .tmp
