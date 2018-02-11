@@ -6,6 +6,10 @@ let linkEl;
 let facebookEl;
 let loadingEl;
 let previewEl;
+let modalEl;
+let closeButtonEl;
+let bodyEl;
+let modalImageEl;
 let subtitleEl;
 let titleEl;
 let twitterEl;
@@ -71,35 +75,14 @@ function handleFileSelect(event) {
     }
 }
 
-function handleModal() {
-    var modal = document.getElementById('myModal');
-    var body = document.getElementsByTagName('BODY')[0];
-    var img = document.getElementById('preview');
-    var modalImg = document.getElementById('img01');
-    img.onclick = function() {
-        modal.style.display = 'block';
-        body.style.overflowY = 'hidden';
-        modalImg.src = this.src;
-    };
+function showModal() {
+    modalEl.style.display = 'block';
+    bodyEl.style.overflow = 'hidden';
+}
 
-    var span = document.getElementsByClassName('close')[0];
-
-    span.onclick = function() {
-        modal.style.display = 'none';
-        body.style.overflowY = 'scroll';
-    };
-    modalImg.onclick = function() {
-        modal.style.display = 'none';
-        body.style.overflowY = 'scroll';
-    };
-    document.onkeydown = function(evt) {
-        if ('key' in evt) {
-            if (evt.keyCode == 27) {
-                modal.style.display = 'none';
-                body.style.overflowY = 'scroll';
-            }
-        }
-    };
+function hideModal() {
+    modalEl.style.display = 'none';
+    bodyEl.style.overflow = 'scroll';
 }
 
 function postToImgur() {
@@ -132,7 +115,7 @@ function postToImgur() {
                     }&url=${result}`;
 
                     previewEl.src = result;
-                    previewEl.onClick = handleModal();
+                    modalImageEl.src = result;
 
                     userActionsEl.classList.remove('hide');
                 }
@@ -149,6 +132,10 @@ export function init() {
     facebookEl = document.querySelector('#facebook');
     loadingEl = document.querySelector('#loading');
     previewEl = document.querySelector('#preview');
+    modalEl = document.getElementById('modal');
+    closeButtonEl = document.getElementsByClassName('close')[0];
+    bodyEl = document.getElementsByTagName('BODY')[0];
+    modalImageEl = document.getElementById('modal-image');
     twitterEl = document.querySelector('#twitter');
     subtitleEl = document.querySelector('#subtitle');
     titleEl = document.querySelector('#title');
@@ -157,4 +144,15 @@ export function init() {
 
     downloadEl.addEventListener('click', downloadUserCover);
     filesEl.addEventListener('change', handleFileSelect, false);
+    previewEl.addEventListener('click', showModal);
+    modalImageEl.addEventListener('click', hideModal);
+    closeButtonEl.addEventListener('click', hideModal);
+    document.onkeydown = function(evt) {
+        if ('key' in evt) {
+            if (evt.keyCode == 27) {
+                modalEl.style.display = 'none';
+                bodyEl.style.overflowY = 'scroll';
+            }
+        }
+    };
 }
