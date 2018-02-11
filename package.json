@@ -4,8 +4,8 @@
     "description": "📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉",
     "scripts": {
         "alias": "now alias --token=$NOW_TOKEN",
-        "build-prod": "NODE_ENV=production webpack",
         "build-local": "env-cmd ./local.env webpack",
+        "build-prod": "NODE_ENV=production webpack",
         "contributors-add": "all-contributors add",
         "contributors-generate": "all-contributors generate",
         "deploy": "now --force --npm --token $NOW_TOKEN",
