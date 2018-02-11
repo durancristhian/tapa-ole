@@ -1,4 +1,4 @@
-const domtoimage = require('dom-to-image');
+import domtoimage from 'dom-to-image';
 
 let downloadEl;
 let filesEl;
@@ -64,7 +64,7 @@ function handleFileSelect(event) {
                     </div>
                 `;
 
-                postToImgur();
+                setTimeout(postToImgur, 3000);
             };
         })(f);
         reader.readAsDataURL(f);
