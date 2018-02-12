@@ -1,15 +1,12 @@
+import * as basicLightbox from 'basiclightbox';
 import domtoimage from 'dom-to-image';
 
 let downloadEl;
+let facebookEl;
 let filesEl;
 let linkEl;
-let facebookEl;
 let loadingEl;
 let previewEl;
-let modalEl;
-let closeButtonEl;
-let bodyEl;
-let modalImageEl;
 let subtitleEl;
 let titleEl;
 let twitterEl;
@@ -33,20 +30,29 @@ function downloadUserCover() {
 }
 
 function handleFileSelect(event) {
+    // muestra el mensaje de que estamos generando la imágen
     loadingEl.classList.remove('hide');
 
+    // obtenemos la colección de fotos
     var files = event.target.files;
 
+    // por cada una
     for (var i = 0, f; (f = files[i]); i++) {
+        // filtramos las de tipo imágen
         if (!f.type.match('image.*')) {
             continue;
         }
 
         var reader = new FileReader();
+        // cargamos la imágen
+        reader.readAsDataURL(f);
+        // cuando terminó de cargarse la imágen
         reader.onload = (function() {
             return function(e) {
+                // obtenemos el src en base 64
                 const imgSrc = e.target.result;
 
+                // creamos el markup de la portada que el usuario puede exportar
                 userCoverEl.innerHTML = `
                     <div id="export" class="align-center bg-white flex flex-column justify-center relative tc user-image">
                         <div class="absolute bg-center bottom-0 cover left-0 right-0 top-0" style="background-image: url('${imgSrc}'); z-index: 0;">
@@ -68,25 +74,17 @@ function handleFileSelect(event) {
                     </div>
                 `;
 
+                // subimos la imágen a imgur después de 3 segundos
+                // para que el navegador pueda cargar los logos
                 setTimeout(postToImgur, 3000);
             };
         })(f);
-        reader.readAsDataURL(f);
     }
-}
-
-function showModal() {
-    modalEl.style.display = 'block';
-    bodyEl.style.overflow = 'hidden';
-}
-
-function hideModal() {
-    modalEl.style.display = 'none';
-    bodyEl.style.overflow = 'scroll';
 }
 
 function postToImgur() {
     domtoimage.toBlob(document.getElementById('export')).then((blob) => {
+        // generamos un objeto FormData para enviar por AJAX
         var data = new FormData();
         data.append('image', blob);
 
@@ -94,10 +92,13 @@ function postToImgur() {
         xhttp.open('POST', 'https://api.imgur.com/3/image', true);
         xhttp.setRequestHeader('Authorization', 'Client-ID bff2f3408c864bc');
         xhttp.onreadystatechange = function() {
+            // la petición se completó
             if (this.readyState === 4) {
+                // si terminó correctamente
                 if (this.status >= 200 && this.status < 300) {
                     var result = '';
 
+                    // parseamos la respuesta para validar que sea el objeto que esperamos
                     try {
                         var response = JSON.parse(this.responseText);
 
@@ -107,16 +108,20 @@ function postToImgur() {
                         console.error(error);
                     }
 
-                    linkEl.value = result;
+                    // generamos el `alt` para las imágenes
+                    const alt = `${titleEl.value} - ${subtitleEl.value}`;
 
+                    // asignamos a los diferentes elementos los valores necesarios a partir del
+                    // objeto de respuesta de imgur
                     facebookEl.href = `https://www.facebook.com/sharer/sharer.php?u=${result}`;
+                    linkEl.value = result;
+                    previewEl.alt = alt;
+                    previewEl.src = result;
                     twitterEl.href = `https://twitter.com/intent/tweet?text=${
                         titleEl.value
                     }&url=${result}`;
 
-                    previewEl.src = result;
-                    modalImageEl.src = result;
-
+                    // mostramos el preview y los botones para descargar y compartir
                     userActionsEl.classList.remove('hide');
                 }
             }
@@ -125,34 +130,58 @@ function postToImgur() {
     });
 }
 
+function showModal(event) {
+    // creamos una función que recibe un evento keydown y se fija si se presionó
+    // la tecla escape para cerrar el modal
+    const onKeydown = function(modalInstance, event) {
+        if (event.keyCode === 27) modalInstance.close();
+    };
+    let onKeydownListener;
+
+    const modalInstance = basicLightbox.create(
+        // markup del modal
+        `<img src="${event.target.src}" alt="${event.target.alt}">`,
+        {
+            // eliminamos el listener de keydown antes de cerrar el modal
+            beforeClose: () => {
+                window.removeEventListener('keydown', onKeydownListener);
+            },
+            // antes de mostrar el modal
+            beforeShow: (instance) => {
+                // generamos una función que almacenamos en una variable externa
+                // para ser capaces de eliminar el listener luego
+                onKeydownListener = onKeydown.bind(this, instance);
+
+                // agregamos el listener a window
+                window.addEventListener('keydown', onKeydownListener);
+            },
+            // clase que se agrega al modal
+            className: 'zoom-out',
+        }
+    );
+
+    modalInstance.show();
+}
+
 export function init() {
     downloadEl = document.querySelector('#download');
+    facebookEl = document.querySelector('#facebook');
     filesEl = document.querySelector('#files');
     linkEl = document.querySelector('#link');
-    facebookEl = document.querySelector('#facebook');
     loadingEl = document.querySelector('#loading');
     previewEl = document.querySelector('#preview');
-    modalEl = document.getElementById('modal');
-    closeButtonEl = document.getElementsByClassName('close')[0];
-    bodyEl = document.getElementsByTagName('BODY')[0];
-    modalImageEl = document.getElementById('modal-image');
-    twitterEl = document.querySelector('#twitter');
     subtitleEl = document.querySelector('#subtitle');
     titleEl = document.querySelector('#title');
-    userCoverEl = document.querySelector('#user-cover');
+    twitterEl = document.querySelector('#twitter');
     userActionsEl = document.querySelector('#user-actions');
+    userCoverEl = document.querySelector('#user-cover');
 
-    downloadEl.addEventListener('click', downloadUserCover);
+    // asignamos un listener al cargar una imágen
     filesEl.addEventListener('change', handleFileSelect, false);
+
+    // descargar lo que el usuario generó
+    downloadEl.addEventListener('click', downloadUserCover);
+
+    // previsualizar la foto generada
     previewEl.addEventListener('click', showModal);
-    modalImageEl.addEventListener('click', hideModal);
-    closeButtonEl.addEventListener('click', hideModal);
-    document.onkeydown = function(evt) {
-        if ('key' in evt) {
-            if (evt.keyCode == 27) {
-                modalEl.style.display = 'none';
-                bodyEl.style.overflowY = 'scroll';
-            }
-        }
-    };
 }
