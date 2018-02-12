@@ -1,5 +1,6 @@
 @import 'basiclightbox/dist/basicLightbox.min.css';
 @import 'fonts.css';
+@import 'style-file-input';
 @import 'tachyons';
 
 :root {
@@ -56,6 +57,10 @@ body {
 
 .vh-70 {
     height: 70vh;
+}
+
+.w-10-rem {
+    width: 10rem;
 }
 
 .zoom-in {

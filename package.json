@@ -1,6 +1,6 @@
 {
     "name": "tapa-ole",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉",
     "scripts": {
         "alias": "now alias --token=$NOW_TOKEN",
@@ -54,6 +54,7 @@
         "prettier": "^1.9.2",
         "simple-progress-webpack-plugin": "^1.0.4",
         "smart-promisify": "^1.0.2",
+        "style-file-input": "^1.0.4",
         "style-loader": "^0.20.1",
         "stylelint": "^8.4.0",
         "stylelint-config-standard": "^18.0.0",
