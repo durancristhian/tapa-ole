@@ -1,9 +1,10 @@
 import * as basicLightbox from 'basiclightbox';
+import stylefileinput from 'style-file-input';
 import domtoimage from 'dom-to-image';
 
 let downloadEl;
 let facebookEl;
-let filesEl;
+let fileEl;
 let linkEl;
 let loadingEl;
 let previewEl;
@@ -30,30 +31,33 @@ function downloadUserCover() {
 }
 
 function handleFileSelect(event) {
+    // obtenemos la colección de fotos
+    var file = event.target.files[0];
+
+    // verificamos el tipo de imágen
+    if (!file || !file.type.match('image.*')) {
+        // oculta el mensaje de que estamos generando la imágen
+        loadingEl.classList.add('hide');
+        // y ocultamos las acciones del usuario
+        userActionsEl.classList.add('hide');
+
+        return;
+    }
+
     // muestra el mensaje de que estamos generando la imágen
     loadingEl.classList.remove('hide');
 
-    // obtenemos la colección de fotos
-    var files = event.target.files;
+    var reader = new FileReader();
+    // cargamos la imágen
+    reader.readAsDataURL(file);
+    // cuando terminó de cargarse la imágen
+    reader.onload = (function() {
+        return function(e) {
+            // obtenemos el src en base 64
+            const imgSrc = e.target.result;
 
-    // por cada una
-    for (var i = 0, f; (f = files[i]); i++) {
-        // filtramos las de tipo imágen
-        if (!f.type.match('image.*')) {
-            continue;
-        }
-
-        var reader = new FileReader();
-        // cargamos la imágen
-        reader.readAsDataURL(f);
-        // cuando terminó de cargarse la imágen
-        reader.onload = (function() {
-            return function(e) {
-                // obtenemos el src en base 64
-                const imgSrc = e.target.result;
-
-                // creamos el markup de la portada que el usuario puede exportar
-                userCoverEl.innerHTML = `
+            // creamos el markup de la portada que el usuario puede exportar
+            userCoverEl.innerHTML = `
                     <div id="export" class="align-center bg-white flex flex-column justify-center relative tc user-image">
                         <div class="absolute bg-center bottom-0 cover left-0 right-0 top-0" style="background-image: url('${imgSrc}'); z-index: 0;">
                         </div>
@@ -74,12 +78,11 @@ function handleFileSelect(event) {
                     </div>
                 `;
 
-                // subimos la imágen a imgur después de 3 segundos
-                // para que el navegador pueda cargar los logos
-                setTimeout(postToImgur, 3000);
-            };
-        })(f);
-    }
+            // subimos la imágen a imgur después de 3 segundos
+            // para que el navegador pueda cargar los logos
+            setTimeout(postToImgur, 3000);
+        };
+    })(file);
 }
 
 function postToImgur() {
@@ -140,7 +143,7 @@ function showModal(event) {
 
     const modalInstance = basicLightbox.create(
         // markup del modal
-        `<img src="${event.target.src}" alt="${event.target.alt}">`,
+        `<img src="${event.target.src}" alt="${event.target.alt}" class="shadow-5">`,
         {
             // eliminamos el listener de keydown antes de cerrar el modal
             beforeClose: () => {
@@ -166,7 +169,7 @@ function showModal(event) {
 export function init() {
     downloadEl = document.querySelector('#download');
     facebookEl = document.querySelector('#facebook');
-    filesEl = document.querySelector('#files');
+    fileEl = document.querySelector('#file');
     linkEl = document.querySelector('#link');
     loadingEl = document.querySelector('#loading');
     previewEl = document.querySelector('#preview');
@@ -176,11 +179,23 @@ export function init() {
     userActionsEl = document.querySelector('#user-actions');
     userCoverEl = document.querySelector('#user-cover');
 
-    // asignamos un listener al cargar una imágen
-    filesEl.addEventListener('change', handleFileSelect, false);
+    // usamos este plugin para poder estilizar el input file
+    stylefileinput(fileEl, {
+        browseButtonLabel: 'Subir',
+        buttonClass:
+            'b b--black-30 ba bg-main br1 lh-copy pointer pv2 tc text-shadow-2 ttu w-10-rem white',
+        changeButtonLabel: 'Cambiar',
+        inputClass: 'bg-black-50 kist-Stylefileinput-input white',
+        noFileSelectedText: '',
+        textClass: 'flex-auto-ns kist-Stylefileinput-text ml3-ns mt3 mt0-ns truncate',
+        wrapperClass: 'flex flex-column flex-row-ns items-center-ns kist-Stylefileinput',
+    });
 
     // descargar lo que el usuario generó
     downloadEl.addEventListener('click', downloadUserCover);
+
+    // asignamos un listener al cargar una imágen
+    fileEl.addEventListener('change', handleFileSelect, false);
 
     // previsualizar la foto generada
     previewEl.addEventListener('click', showModal);
