@@ -64,10 +64,6 @@ body {
     cursor: zoom-in;
 }
 
-#preview:hover {
-    opacity: 0.7;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -81,11 +77,9 @@ body {
 }
 
 .modal-content {
-    margin: 5vh 30vw;
+    margin: 5vh auto;
     display: block;
-    width: 40vw;
-    height: 90vh;
-    max-width: 400px;
+    max-height: 90%;
     cursor: zoom-out;
     animation-name: zoom;
     animation-duration: 0.6s;
@@ -94,7 +88,8 @@ body {
 @keyframes zoom {
     from {
         transform: scale(0);
-    } 
+    }
+
     to {
         transform: scale(1);
     }
@@ -117,7 +112,7 @@ body {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
     #preview {
         margin-left: -15vw;
     }
