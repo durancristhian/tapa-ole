@@ -8,7 +8,7 @@
         "build-prod": "NODE_ENV=production webpack",
         "contributors-add": "all-contributors add",
         "contributors-generate": "all-contributors generate",
-        "deploy": "now --force --npm --token $NOW_TOKEN",
+        "deploy": "now --npm --token $NOW_TOKEN",
         "postalias": "now rm tapa-ole --safe --token $NOW_TOKEN --yes",
         "start": "serve dist",
         "start-local": "env-cmd ./local.env webpack-dev-server --port 3333 --watch"
