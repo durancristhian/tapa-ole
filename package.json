@@ -8,8 +8,9 @@
         "build-prod": "NODE_ENV=production webpack",
         "contributors-add": "all-contributors add",
         "contributors-generate": "all-contributors generate",
-        "deploy": "now --npm --token $NOW_TOKEN",
+        "deploy": "now --force --npm --token $NOW_TOKEN",
         "postalias": "now rm tapa-ole --safe --token $NOW_TOKEN --yes",
+        "scale": "now scale tapa-ole 1 --token=$NOW_TOKEN",
         "start": "serve dist",
         "start-local": "env-cmd ./local.env webpack-dev-server --port 3333 --watch"
     },
@@ -18,9 +19,7 @@
         "env": {
             "NODE_ENV": "production"
         },
-        "files": [
-            "dist"
-        ],
+        "files": ["dist"],
         "name": "tapa-ole",
         "public": true
     },
