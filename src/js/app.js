@@ -34,18 +34,19 @@ function handleFileSelect(event) {
     // obtenemos la colección de fotos
     var file = event.target.files[0];
 
+    // muestra el mensaje de que estamos generando la imágen
+    loadingEl.classList.remove('hide');
+
+    // ocultamos las acciones del usuario
+    userActionsEl.classList.add('hide');
+
     // verificamos el tipo de imágen
     if (!file || !file.type.match('image.*')) {
         // oculta el mensaje de que estamos generando la imágen
         loadingEl.classList.add('hide');
-        // y ocultamos las acciones del usuario
-        userActionsEl.classList.add('hide');
 
         return;
     }
-
-    // muestra el mensaje de que estamos generando la imágen
-    loadingEl.classList.remove('hide');
 
     var reader = new FileReader();
     // cargamos la imágen
