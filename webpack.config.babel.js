@@ -104,7 +104,7 @@ module.exports = function webpackConfig() {
             ]),
             ifProduction(new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })),
             new SimpleProgressWebpackPlugin(),
-            new CleanWebpackPlugin([resolve(distPath, '*'), resolve(__dirname, '.tmp', '*')]),
+            new CleanWebpackPlugin([resolve(distPath, '*')]),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 inlineManifestWebpackName: 'webpackManifest',
@@ -122,7 +122,7 @@ module.exports = function webpackConfig() {
             new BundleAnalyzerPlugin({
                 analyzerMode: 'static',
                 openAnalyzer: false,
-                reportFilename: '../.tmp/statistics.html',
+                reportFilename: '../dist/stats/bundle-info.html',
             }),
             ifProduction(
                 new webpack.HashedModuleIdsPlugin(),
