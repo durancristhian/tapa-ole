@@ -10,7 +10,7 @@
         "contributors-generate": "all-contributors generate",
         "deploy": "now --force --npm --token $NOW_TOKEN",
         "postalias": "now rm tapa-ole --safe --token $NOW_TOKEN --yes",
-        "scale": "now scale tapa-ole 1 --token=$NOW_TOKEN",
+        "scale": "now scale tapa-ole.now.sh 1 --token=$NOW_TOKEN",
         "start": "serve dist",
         "start-local": "env-cmd ./local.env webpack-dev-server --port 3333 --watch"
     },
@@ -52,7 +52,6 @@
         "postcss-reporter": "^5.0.0",
         "prettier": "^1.9.2",
         "simple-progress-webpack-plugin": "^1.0.4",
-        "smart-promisify": "^1.0.2",
         "style-file-input": "^1.0.4",
         "style-loader": "^0.20.1",
         "stylelint": "^8.4.0",
