@@ -1,6 +1,6 @@
 # tapa-ole
 
-[![Build Status](https://travis-ci.org/durancristhian/tapa-ole.svg?branch=master)](https://travis-ci.org/durancristhian/tapa-ole)
+[![Build Status](https://travis-ci.org/durancristhian/tapa-ole.svg?branch=master)](https://travis-ci.org/durancristhian/tapa-ole) [![Greenkeeper badge](https://badges.greenkeeper.io/durancristhian/tapa-ole.svg)](https://greenkeeper.io/)
 
 📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉
 
