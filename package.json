@@ -1,6 +1,6 @@
 {
     "name": "tapa-ole",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉",
     "scripts": {
         "alias": "now alias --token=$NOW_TOKEN",
@@ -19,7 +19,9 @@
         "env": {
             "NODE_ENV": "production"
         },
-        "files": ["dist"],
+        "files": [
+            "dist"
+        ],
         "name": "tapa-ole",
         "public": true
     },
