@@ -9,6 +9,7 @@ script:
   - npm run build-prod
 before_deploy:
   - npm i now --no-save
+  - npm run clean-deploys
 deploy:
   provider: script
   script: npm run deploy
