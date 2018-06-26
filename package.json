@@ -3,14 +3,13 @@
     "version": "1.2.1",
     "description": "📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉",
     "scripts": {
-        "alias": "now alias --token=$NOW_TOKEN",
         "build-local": "env-cmd ./local.env webpack",
         "build-prod": "NODE_ENV=production webpack",
         "clean-deploys": "now rm tapa-ole --token $NOW_TOKEN --yes",
         "contributors-add": "all-contributors add",
         "contributors-generate": "all-contributors generate",
         "deploy": "now --npm --token $NOW_TOKEN",
-        "scale": "now scale tapa-ole.now.sh sfo 1 --token=$NOW_TOKEN",
+        "scale": "now scale tapa-ole sfo 1 --token=$NOW_TOKEN",
         "start": "serve dist",
         "start-local": "env-cmd ./local.env webpack-dev-server --port 3333 --watch"
     },
