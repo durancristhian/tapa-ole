@@ -9,7 +9,7 @@
         "contributors-add": "all-contributors add",
         "contributors-generate": "all-contributors generate",
         "deploy": "now --npm --token $NOW_TOKEN",
-        "scale": "now scale tapa-ole sfo 1 --token=$NOW_TOKEN",
+        "scale": "now scale tapa-ole 1 --token=$NOW_TOKEN",
         "start": "serve dist",
         "start-local": "env-cmd ./local.env webpack-dev-server --port 3333 --watch"
     },
@@ -18,9 +18,7 @@
         "env": {
             "NODE_ENV": "production"
         },
-        "files": [
-            "dist"
-        ],
+        "files": ["dist"],
         "name": "tapa-ole",
         "public": true
     },
