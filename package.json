@@ -8,24 +8,26 @@
         "clean-deploys": "now rm tapa-ole --safe --token $NOW_TOKEN --yes",
         "contributors-add": "all-contributors add",
         "contributors-generate": "all-contributors generate",
-        "deploy": "now --npm --token $NOW_TOKEN",
+        "deploy": "now alias $(now --name tapa-ole --token $NOW_TOKEN) tapa-ole --token=$NOW_TOKEN",
         "start": "serve dist",
         "start-local": "env-cmd ./local.env webpack-dev-server --port 3333 --watch"
     },
     "now": {
-        "alias": "tapa-ole",
         "env": {
             "NODE_ENV": "production"
         },
         "files": ["dist"],
-        "name": "tapa-ole",
         "public": true,
         "scale": {
             "sfo1": {
                 "min": 1,
                 "max": 1
             }
-        }
+        },
+        "static": {
+            "trailingSlash": true
+        },
+        "type": "npm"
     },
     "author": "@durancristhian",
     "license": "MIT",
