@@ -1,23 +1,22 @@
 sudo: false
 language: node_js
 cache:
-  directories:
-    - node_modules
+    directories:
+        - node_modules
 notifications:
-  email: false
+    email: false
 script:
-  - npm run build-prod
+    - npm run build-prod
 before_deploy:
-  - npm i now --no-save
-  - npm run clean-deploys
+    - npm i now --no-save
 deploy:
-  provider: script
-  script: npm run deploy
-  skip_cleanup: true
-  on:
-    branch: master
+    provider: script
+    script: npm run deploy
+    skip_cleanup: true
+    on:
+        branch: master
 after_deploy:
-  - npm run scale
+    - npm run clean-deploys
 env:
-  global:
-    secure: tc0rK3I4yhRcm3XlC6FrQfn5tP6DOgZk95IAd7j4MXOSCbVCMJ6IApaKTdwtc3IpRHVSjSYg6jA47dqfTD/fK+IAeTHF6hzF71JDRWxMLLWZuQUPWuZ9rC22aIkJy2YUvDNvkU9+ITDfs1JOczq5ULbk5pPEhqsTrqtM/u7oZD6f3xb2lmZZHV2oLPSGuvlD2ZGRdJqB4qqFtWi36TE0FqqM+Zv6EW69Ex52gbzD4rwlCr69+gxR1fIKLVbO5A0/lqwZTjHY1HLta/dvr5+TBRzbHSAsdhx6Dw8Ix02zVz40sRMENGjExrhc9lgLhx4dWZ2/r0lgYKE2aWjgcOoT8B1hkqc0o00kmhVD6f0IdfOOWeDiXzbLnNcsGgASw/1menWOPKJP19rkvd8F+gqdFTaPZzx2pyPkcGwxdDL811rjrosatXnUMZGmpw842dUf1/eIEjHwOk/hIVmfNA2zORfgmiG0FYzrfWnGbDPA8XvFBqTsqqYAvms+opSkwfrRQb5nYwmZrtHhyCHifCnM7b9LcRVNFwSKKDnUplM549iJAFHPiUye9SKJSgg8cN5nWatfuPkZKPrRnKR5f8Dz/hSUCv7L5NvSAcaB7zSFNjVEEIL5MPROmURYj0rurahnIBHYiyGD8tUn6HxCEKK+4Tgr0LgP/IWQQZlLNLnvAwQ=
+    global:
+        secure: tc0rK3I4yhRcm3XlC6FrQfn5tP6DOgZk95IAd7j4MXOSCbVCMJ6IApaKTdwtc3IpRHVSjSYg6jA47dqfTD/fK+IAeTHF6hzF71JDRWxMLLWZuQUPWuZ9rC22aIkJy2YUvDNvkU9+ITDfs1JOczq5ULbk5pPEhqsTrqtM/u7oZD6f3xb2lmZZHV2oLPSGuvlD2ZGRdJqB4qqFtWi36TE0FqqM+Zv6EW69Ex52gbzD4rwlCr69+gxR1fIKLVbO5A0/lqwZTjHY1HLta/dvr5+TBRzbHSAsdhx6Dw8Ix02zVz40sRMENGjExrhc9lgLhx4dWZ2/r0lgYKE2aWjgcOoT8B1hkqc0o00kmhVD6f0IdfOOWeDiXzbLnNcsGgASw/1menWOPKJP19rkvd8F+gqdFTaPZzx2pyPkcGwxdDL811rjrosatXnUMZGmpw842dUf1/eIEjHwOk/hIVmfNA2zORfgmiG0FYzrfWnGbDPA8XvFBqTsqqYAvms+opSkwfrRQb5nYwmZrtHhyCHifCnM7b9LcRVNFwSKKDnUplM549iJAFHPiUye9SKJSgg8cN5nWatfuPkZKPrRnKR5f8Dz/hSUCv7L5NvSAcaB7zSFNjVEEIL5MPROmURYj0rurahnIBHYiyGD8tUn6HxCEKK+4Tgr0LgP/IWQQZlLNLnvAwQ=
