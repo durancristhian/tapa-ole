@@ -72,6 +72,6 @@
         "webpack-visualizer-plugin": "^0.1.11"
     },
     "dependencies": {
-        "serve": "^6.4.9"
+        "serve": "^10.0.0"
     }
 }
