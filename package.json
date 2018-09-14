@@ -65,7 +65,7 @@
         "stylelint": "~8.4.0",
         "stylelint-config-standard": "~18.0.0",
         "tachyons": "~4.9.0",
-        "uglifyjs-webpack-plugin": "~1.1.5",
+        "uglifyjs-webpack-plugin": "~2.0.0",
         "webpack": "~3.10.0",
         "webpack-bundle-analyzer": "~2.9.1",
         "webpack-chunk-hash": "~0.5.0",
