@@ -58,7 +58,7 @@
         "postcss-import": "~11.0.0",
         "postcss-loader": "~2.0.9",
         "postcss-reporter": "~5.0.0",
-        "prettier": "~1.9.2",
+        "prettier": "~1.14.3",
         "simple-progress-webpack-plugin": "~1.0.4",
         "style-file-input": "~1.0.4",
         "style-loader": "~0.23.0",
