@@ -1,72 +1,72 @@
-@import 'basiclightbox/dist/basicLightbox.min.css';
-@import 'fonts.css';
-@import 'style-file-input';
-@import 'tachyons';
+@import '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
+@import '../../node_modules/style-file-input/index.css';
+@import '../../node_modules/tachyons/css/tachyons.css';
+@import './fonts.css';
 
 :root {
-    --color-main: #b8cd1c;
+  --color-main: #b8cd1c;
 }
 
 body {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .bg-facebook {
-    background-color: #3b5998;
+  background-color: #3b5998;
 }
 
 .bg-main {
-    background-color: var(--color-main);
+  background-color: var(--color-main);
 }
 
 .bg-twitter {
-    background-color: #00aced;
+  background-color: #00aced;
 }
 
 .gradient-1 {
-    background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 65%);
+  background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 65%);
 }
 
 .hide {
-    left: -9999px !important;
-    position: absolute !important;
-    top: -9999px !important;
+  left: -9999px !important;
+  position: absolute !important;
+  top: -9999px !important;
 }
 
 .oswald {
-    font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 .roboto-condensed {
-    font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .text-shadow-1 {
-    text-shadow: 0 0 10px #000;
+  text-shadow: 0 0 10px #000;
 }
 
 .text-shadow-2 {
-    text-shadow: 0 0 1px rgba(0, 0, 0, 0.75);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.75);
 }
 
 .user-image {
-    height: 1500px;
-    width: 1200px;
+  height: 1500px;
+  width: 1200px;
 }
 
 .vh-70 {
-    height: 70vh;
+  height: 70vh;
 }
 
 .w-10-rem {
-    width: 10rem;
+  width: 10rem;
 }
 
 .zoom-in {
-    cursor: zoom-in;
+  cursor: zoom-in;
 }
 
 .zoom-out {
-    cursor: zoom-out;
+  cursor: zoom-out;
 }

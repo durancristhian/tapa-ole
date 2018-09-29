@@ -8,16 +8,15 @@
 
 ## Development
 
-* Duplicate `template.env`, rename it as `local.env` and complete it with the right information.
-* Run the following commands:
+- Run the following commands:
 
-    ```bash
-    # install deps
-    npm i
+  ```bash
+  # install deps
+  npm i
 
-    # dev mode
-    npm run start-local
-    ```
+  # dev mode
+  npm run dev
+  ```
 
 ## Licence
 

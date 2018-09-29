@@ -4,5 +4,6 @@
 local.env
 
 # folders
+.cache
 dist
 node_modules
