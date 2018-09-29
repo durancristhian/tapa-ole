@@ -6,7 +6,7 @@ cache:
 notifications:
   email: false
 script:
-  - npm run build-prod
+  - npm run build
 before_deploy:
   - npm i now --no-save
 deploy:
