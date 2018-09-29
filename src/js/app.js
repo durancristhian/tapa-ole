@@ -68,7 +68,7 @@ function handleFileSelect(event) {
                         <div class="absolute bottom-0 left-0 right-0 top-0" style="z-index: 2;">
                             <img src="${logoImage}" class="absolute left-0 top-0" style="height: 350px; width: 550px;" />
                             <div class="absolute bottom-0 gradient-1 left-0 pv5 right-0">
-                                <h2 class="f1 i mb3 mt0 normal oswald ph3 sans-serif text-shadow-1 ttu white" style="color: #b1c903; font-size: 150px; letter-spacing: -5px;">
+                                <h2 class="f1 i mb3 mt0 normal oswald ph3 sans-serif text-shadow-1 white" style="color: #b1c903; font-size: 150px; letter-spacing: -5px;">
                                     ${titleEl.value}
                                 </h2>
                                 <h3 class="f3 fw3 ma0 ph5 roboto-condensed sans-serif text-shadow-1 white" style="font-size: 50px;">
