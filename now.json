@@ -1,5 +1,8 @@
 {
   "alias": "tapa-ole",
+  "env": {
+    "NODE_ENV": "production"
+  },
   "files": ["dist"],
   "name": "tapa-ole",
   "public": true,

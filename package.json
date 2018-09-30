@@ -8,7 +8,7 @@
     "clean-deploys": "now rm $INSTANCE_NAME --safe --token $NOW_TOKEN --yes",
     "contributors-add": "all-contributors add",
     "contributors-generate": "all-contributors generate",
-    "deploy": "now alias $(now --name tapa-ole --token $NOW_TOKEN) tapa-ole --token=$NOW_TOKEN",
+    "deploy": "now --token $NOW_TOKEN",
     "dev": "parcel ./src/index.html",
     "start": "serve dist"
   },
