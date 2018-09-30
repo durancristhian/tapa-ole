@@ -4,7 +4,7 @@
   "description": "📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉",
   "scripts": {
     "alias": "now alias --token $NOW_TOKEN",
-    "build": "parcel build ./src/index.html",
+    "build-prod": "parcel build ./src/index.html",
     "clean-deploys": "now rm $INSTANCE_NAME --safe --token $NOW_TOKEN --yes",
     "contributors-add": "all-contributors add",
     "contributors-generate": "all-contributors generate",
@@ -15,7 +15,6 @@
   "author": "@durancristhian",
   "license": "MIT",
   "dependencies": {
-    "fonts.css": "^2.0.0",
     "serve": "^10.0.2"
   },
   "devDependencies": {
