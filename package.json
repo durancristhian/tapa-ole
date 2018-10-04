@@ -8,7 +8,7 @@
     "clean-deploys": "now rm $INSTANCE_NAME --safe --token $NOW_TOKEN --yes",
     "contributors-add": "all-contributors add",
     "contributors-generate": "all-contributors generate",
-    "deploy": "now ./dist --static --token $NOW_TOKEN",
+    "deploy": "cd dist && now --local-config=../now.json --static --token $NOW_TOKEN",
     "dev": "parcel ./src/index.html"
   },
   "author": "@durancristhian",
