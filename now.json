@@ -1,8 +1,5 @@
 {
   "alias": "tapa-ole",
-  "env": {
-    "NODE_ENV": "production"
-  },
   "name": "tapa-ole",
   "public": true,
   "scale": {

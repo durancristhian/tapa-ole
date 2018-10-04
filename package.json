@@ -8,15 +8,11 @@
     "clean-deploys": "now rm $INSTANCE_NAME --safe --token $NOW_TOKEN --yes",
     "contributors-add": "all-contributors add",
     "contributors-generate": "all-contributors generate",
-    "deploy": "now ./dist --token $NOW_TOKEN",
-    "dev": "parcel ./src/index.html",
-    "start": "serve dist"
+    "deploy": "now ./dist --static --token $NOW_TOKEN",
+    "dev": "parcel ./src/index.html"
   },
   "author": "@durancristhian",
   "license": "MIT",
-  "dependencies": {
-    "serve": "^10.0.2"
-  },
   "devDependencies": {
     "all-contributors-cli": "^5.4.0",
     "babel-core": "^6.26.3",
