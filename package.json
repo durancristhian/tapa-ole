@@ -14,7 +14,7 @@
   "author": "@durancristhian",
   "license": "MIT",
   "devDependencies": {
-    "all-contributors-cli": "^5.4.0",
+    "all-contributors-cli": "^6.9.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
