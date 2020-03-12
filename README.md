@@ -1,10 +1,8 @@
 # tapa-ole
 
-[![Build Status](https://travis-ci.org/durancristhian/tapa-ole.svg?branch=master)](https://travis-ci.org/durancristhian/tapa-ole)
-
 📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉
 
-[tapa-ole.now.sh](https://tapa-ole.now.sh/)
+[tapa-ole.cduran.now.sh](https://tapa-ole.cduran.now.sh/)
 
 ## Development
 
