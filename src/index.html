@@ -1,128 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <title>Armá tu tapa de Olé</title>
-    <meta property="og:url" content="https://tapa-ole.now.sh/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Armá tu tapa de Olé">
-    <meta property="og:description" content="Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto.">
-    <meta property="og:image" content="https://tapa-ole.now.sh/assets/images/social.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@durancristhian">
-    <meta name="twitter:title" content="Armá tu tapa de Olé">
-    <meta name="twitter:description" content="Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto.">
-    <meta name="twitter:image" content="https://tapa-ole.now.sh/assets/images/social.png">
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body class="f6 f5-ns ma0 sans-serif">
-    <div class="ph3 pv4 pv5-ns">
-        <div class="center mw8">
-            <h1 class="f3 f2-ns mv0">Armá tu tapa de Olé</h1>
-            <h2 class="flex items-end justify-start mb0 mt4">
-                <span class="f2 f1-ns mr2 mr3-ns">1.</span>
-                <span class="black-50 f5 f4-ns mb1 mb2-ns">Escribí el título y la bajada</span>
-            </h2>
-            <div class="flex mt4">
-                <div class="w-30">
-                    <label for="title" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Título</label>
-                </div>
-                <div class="w-70">
-                    <input type="text" name="title" id="title" placeholder="Recomendado hasta 20 caracteres" class="b--black-20 ba db ph3 pv2 w-100">
-                </div>
-            </div>
-            <div class="flex mt2">
-                <div class="w-30">
-                    <label for="subtitle" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Bajada</label>
-                </div>
-                <div class="w-70">
-                    <input type="text" name="subtitle" id="subtitle" placeholder="Recomendado hasta 100 caracteres"
-                        class="b--black-20 ba db ph3 pv2 w-100">
-                </div>
-            </div>
-            <h2 class="flex items-end justify-start mb0 mt4">
-                <span class="f2 f1-ns mr2 mr3-ns">2.</span>
-                <span class="black-50 f5 f4-ns mb1 mb2-ns">Elegí la foto</span>
-            </h2>
-            <div class="flex mt4">
-                <div class="w-30">
-                    <label for="file" class="b--transparent ba black-50 db fw5 mt1 ph3 pv2 tr">Foto</label>
-                </div>
-                <div class="w-70">
-                    <input type="file" id="file" name="file" class="pv2">
-                    <p class="black-50 f6 i mb0 mt3">Tamaño recomendado: 1200 x 1500 píxeles</p>
-                </div>
-            </div>
-            <div id="loading" class="hide">
-                <h2 class="flex items-end justify-start mb0 mt4">
-                    <span class="f2 f1-ns mr2 mr3-ns">3.</span>
-                    <span class="black-50 f5 f4-ns mb1 mb2-ns">Generando la tapa...</span>
-                </h2>
-            </div>
-            <div id="user-actions" class="hide">
-                <h2 class="flex items-end justify-start mb0 mt4">
-                    <span class="f2 f1-ns mr2 mr3-ns">4.</span>
-                    <span class="black-50 f5 f4-ns mb1 mb2-ns">Previsualización</span>
-                </h2>
-                <div class="mt4">
-                    <img src="#!" id="preview" class="db center shadow-5 vh-70 zoom-in">
-                </div>
-                <h2 class="flex items-end justify-start mb0 mt4">
-                    <span class="f2 f1-ns mr2 mr3-ns">5.</span>
-                    <span class="black-50 f5 f4-ns mb1 mb2-ns">Compartila con tus amigos</span>
-                </h2>
-                <div class="flex mt4">
-                    <div class="w-30">
-                        <label for="link" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Link</label>
-                    </div>
-                    <div class="w-70">
-                        <input type="text" readonly name="link" id="link" class="b--black-20 ba db ph3 pv2 w-100">
-                    </div>
-                </div>
-                <div class="flex mt2">
-                    <div class="w-30">
-                        <label for="download" class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Bajar</label>
-                    </div>
-                    <div class="w-70">
-                        <button id="download" class="b b--black-30 ba bg-main br1 lh-copy pointer pv2 tc text-shadow-2 ttu w-10-rem white">Descargar</button>
-                    </div>
-                </div>
-                <div class="flex mt2">
-                    <div class="w-30">
-                        <span class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Publicar</span>
-                    </div>
-                    <div class="w-70">
-                        <a id="facebook" class="b b--black-30 ba bg-facebook black-80 br1 dib lh-copy no-underline pointer pv2 tc text-shadow-2 ttu w-10-rem white"
-                            target="_blank" href="#!">
-                            Facebook
-                        </a>
-                    </div>
-                </div>
-                <div class="flex mt2">
-                    <div class="w-30">
-                        <span class="b--transparent ba black-50 db fw5 ph3 pv2 tr">Tuitear</span>
-                    </div>
-                    <div class="w-70">
-                        <a id="twitter" class="b b--black-30 ba bg-twitter black-80 br1 dib lh-copy no-underline pointer pv2 tc text-shadow-2 ttu w-10-rem white"
-                            target="_blank" href="#!">
-                            Twitter
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- to load the fonts from the beginning -->
-    <p class="hide oswald">oswald</p>
-    <p class="hide roboto-condensed">roboto-condensed</p>
-    <div id="user-cover" class="center hide user-image"></div>
-    <script src="app.js"></script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tapa-ole</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="bg-gray-100">
+    <div id="root"></div>
+    <script src="index.tsx"></script>
+  </body>
 </html>

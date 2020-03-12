@@ -1,7 +1,0 @@
-{
-  "extends": "stylelint-config-standard",
-  "rules": {
-    "declaration-colon-newline-after": null,
-    "indentation": 2
-  }
-}
