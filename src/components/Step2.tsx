@@ -42,7 +42,7 @@ function Step2() {
   const [currentTheme, setTheme] = useState<ITheme>(theme || themes[0])
   const [preview, setPreview] = useState<HTMLCanvasElement | null>(null)
   const history = useHistory()
-  const download = async () => {
+  const download = () => {
     if (exportRef.current) {
       const link = document.createElement('a')
       link.download = 'tapa-ole.jpeg'
@@ -82,7 +82,7 @@ function Step2() {
       }
     }
 
-    makePreview()
+    setTimeout(makePreview, 1000)
   }, [currentTheme])
 
   return (
