@@ -67,6 +67,7 @@ function Step2() {
 
     const makePreview = async () => {
       if (exportRef.current && canvasContainerRef.current) {
+        // @ts-ignore
         const canvas = await html2canvas(exportRef.current)
         canvas.style.height = '100%'
         canvas.style.width = '100%'
@@ -103,7 +104,7 @@ function Step2() {
                 style={{ paddingRight: 64, paddingTop: 64, width: 400 }}
               />
             </div>
-            <div className="absolute bottom-0 font-semibold gradient italic leading-none left-0 pb-8 px-4 right-0 text-center text-shadow text-white z-10">
+            <div className="absolute bottom-0 font-semibold gradient italic leading-none left-0 pb-8 px-4 right-0 text-center text-white z-10">
               <h1
                 className="font-oswald mb-8 uppercase"
                 style={{ ...currentTheme.styles.title, fontSize: 150 }}

@@ -3,6 +3,11 @@ import InputRadio from './InputRadio'
 
 export interface ITheme {
   text: string
+  styles: {
+    title: {
+      color: string
+    }
+  }
   value: string
 }
 

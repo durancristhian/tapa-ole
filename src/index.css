@@ -9,18 +9,6 @@
   box-shadow: 0 0 1px red;
 }
 
-.gradient {
-  background-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.75) 65%
-  );
-}
-
-.text-shadow {
-  text-shadow: 0 0 10px #000;
-}
-
 .visually-hidden {
   left: -9999px;
   position: absolute;
