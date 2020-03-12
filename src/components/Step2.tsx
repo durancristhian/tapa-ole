@@ -1,5 +1,4 @@
 import classnames from 'classnames'
-import domtoimage from 'dom-to-image'
 import html2canvas from 'html2canvas'
 import React, { useEffect, useState } from 'react'
 import { FiArrowLeft, FiDownload } from 'react-icons/fi'
@@ -41,18 +40,22 @@ function Step2() {
   const exportRef = React.createRef<HTMLDivElement>()
   const canvasContainerRef = React.createRef<HTMLDivElement>()
   const [currentTheme, setTheme] = useState<ITheme>(theme || themes[0])
-  const [preview, setPreview] = useState(false)
+  const [preview, setPreview] = useState<HTMLCanvasElement | null>(null)
   const history = useHistory()
   const download = async () => {
     if (exportRef.current) {
       const link = document.createElement('a')
       link.download = 'tapa-ole.jpeg'
-      link.href = await domtoimage.toJpeg(exportRef.current)
+
+      if (preview) {
+        link.href = preview.toDataURL()
+      }
+
       link.click()
     }
   }
   const onChangeTheme = (theme: ITheme) => {
-    setPreview(false)
+    setPreview(null)
     setTheme(theme)
   }
 
@@ -75,7 +78,7 @@ function Step2() {
         canvasContainerRef.current.innerHTML = ''
         canvasContainerRef.current.appendChild(canvas)
 
-        setPreview(true)
+        setPreview(canvas)
       }
     }
 
