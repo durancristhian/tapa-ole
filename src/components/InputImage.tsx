@@ -38,9 +38,6 @@ function InputImage({ label, id, image, onChange }: Props) {
               'duration-150 ease-in-out transition',
             ])}
             type="button"
-            onClick={() => {
-              inputRef.current?.click()
-            }}
           >
             <FiUpload />
             <span className="ml-2">Agregar imágen</span>
