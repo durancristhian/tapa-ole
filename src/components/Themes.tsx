@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import InputRadio from './InputRadio'
 
-interface Theme {
+export interface ITheme {
   text: string
   value: string
 }
 
-interface Props {
-  currentTheme: Theme
+interface IProps {
+  currentTheme: ITheme
   setTheme: Function
-  themes: Theme[]
+  themes: ITheme[]
 }
 
-export default function Themes({ themes, currentTheme, setTheme }: Props) {
+export default function Themes({ themes, currentTheme, setTheme }: IProps) {
   return (
     <div className="mt-4">
       <h2 className="font-bold text-center text-xl uppercase">

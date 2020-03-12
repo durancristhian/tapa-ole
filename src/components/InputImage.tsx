@@ -2,14 +2,14 @@ import classnames from 'classnames'
 import React, { ChangeEvent } from 'react'
 import { FiUpload } from 'react-icons/fi'
 
-interface Props {
+interface IProps {
   label: string
   id: string
   image: string
   onChange: React.Dispatch<React.SetStateAction<any>>
 }
 
-function InputImage({ label, id, image, onChange }: Props) {
+function InputImage({ label, id, image, onChange }: IProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement
     const file = target.files ? target.files[0] : undefined
@@ -44,7 +44,7 @@ function InputImage({ label, id, image, onChange }: Props) {
           </button>
         )}
         {image && (
-          <div className="max-w-xs mt-1 mx-auto">
+          <div className="mt-1">
             <img
               src={image}
               alt="Previsualización"

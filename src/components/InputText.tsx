@@ -1,14 +1,14 @@
 import classnames from 'classnames'
 import React from 'react'
 
-interface Props {
+interface IProps {
   label: string
   id: string
   onChange: React.Dispatch<React.SetStateAction<any>>
   value: string
 }
 
-function InputText({ label, id, onChange, value }: Props) {
+function InputText({ label, id, onChange, value }: IProps) {
   return (
     <label htmlFor={id} className="flex flex-col my-4 w-full">
       <span className="text-gray-600">{label}</span>

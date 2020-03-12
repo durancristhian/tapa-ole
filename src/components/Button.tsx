@@ -1,12 +1,12 @@
 import classnames from 'classnames'
 import React from 'react'
 
-interface Props extends React.HTMLAttributes<HTMLElement> {
+interface IProps extends React.HTMLAttributes<HTMLElement> {
   disabled?: boolean
   type: 'button' | 'submit' | 'reset' | undefined
 }
 
-function Button({ children, disabled = false, type, ...rest }: Props) {
+function Button({ children, disabled = false, type, ...rest }: IProps) {
   return (
     <button
       type={type}

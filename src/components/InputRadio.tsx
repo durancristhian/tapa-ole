@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import React from 'react'
 import { FiCheck } from 'react-icons/fi'
 
-interface Props {
+interface IProps {
   name: string
   onChange: Function
   selected: boolean
@@ -16,7 +16,7 @@ export default function InputRadio({
   selected,
   text,
   value,
-}: Props) {
+}: IProps) {
   return (
     <label
       htmlFor={value}

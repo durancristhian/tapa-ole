@@ -8,7 +8,7 @@ import 'typeface-oswald'
 import 'typeface-roboto-condensed'
 import Button from './Button'
 import Loading from './Loading'
-import Themes from './Themes'
+import Themes, { ITheme } from './Themes'
 
 const ole = require('../assets/ole.png')
 const powerade = require('../assets/powerade.png')
@@ -40,7 +40,7 @@ function Step2() {
   )
   const exportRef = React.createRef<HTMLDivElement>()
   const canvasContainerRef = React.createRef<HTMLDivElement>()
-  const [currentTheme, setTheme] = useState(theme || themes[0])
+  const [currentTheme, setTheme] = useState<ITheme>(theme || themes[0])
   const [preview, setPreview] = useState(false)
   const history = useHistory()
   const download = async () => {
@@ -50,6 +50,10 @@ function Step2() {
       link.href = await domtoimage.toJpeg(exportRef.current)
       link.click()
     }
+  }
+  const onChangeTheme = (theme: ITheme) => {
+    setPreview(false)
+    setTheme(theme)
   }
 
   useEffect(() => {
@@ -121,13 +125,17 @@ function Step2() {
           ref={canvasContainerRef}
         />
       </div>
-      <Themes themes={themes} currentTheme={currentTheme} setTheme={setTheme} />
+      <Themes
+        themes={themes}
+        currentTheme={currentTheme}
+        setTheme={onChangeTheme}
+      />
       <div className="flex justify-between mt-8">
         <Button type="button" onClick={() => history.push('/')}>
           <FiArrowLeft />
           <span className="ml-2">Información</span>
         </Button>
-        <Button type="button" onClick={download}>
+        <Button type="button" onClick={download} disabled={!preview}>
           <span className="mr-2">Exportar</span>
           <FiDownload />
         </Button>
