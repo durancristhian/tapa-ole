@@ -1,3 +1,5 @@
+// @ts-ignore
+import canvas2image from 'canvas2image-module'
 import classnames from 'classnames'
 import html2canvas from 'html2canvas'
 import React, { useEffect, useState } from 'react'
@@ -44,14 +46,7 @@ function Step2() {
   const [preview, setPreview] = useState<HTMLCanvasElement | null>(null)
   const history = useHistory()
   const download = () => {
-    const link = document.createElement('a')
-    link.download = 'tapa-ole.jpeg'
-
-    if (preview) {
-      link.href = preview.toDataURL()
-    }
-
-    link.click()
+    canvas2image.saveAsJPEG(preview)
   }
   const onChangeTheme = (theme: ITheme) => {
     setPreview(null)
