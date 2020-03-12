@@ -68,7 +68,7 @@ function Step2() {
       }
     }
 
-    setTimeout(makePreview, 100)
+    setTimeout(makePreview, 3000)
   }, [currentTheme])
 
   return (
