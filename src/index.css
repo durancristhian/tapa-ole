@@ -9,6 +9,10 @@
   box-shadow: 0 0 1px red;
 }
 
+.text-shadow {
+  text-shadow: 2px 2px 5px #000;
+}
+
 .visually-hidden {
   left: -9999px;
   position: absolute;
