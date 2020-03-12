@@ -31,7 +31,7 @@
     "autoprefixer": "^9.7.4",
     "classnames": "^2.2.6",
     "dom-to-image": "^2.6.0",
-    "html2canvas": "^1.0.0-rc.1",
+    "html2canvas": "1.0.0-rc.1",
     "parcel-bundler": "^1.12.4",
     "prettier": "1.19.1",
     "react": "^16.13.0",
