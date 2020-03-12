@@ -8,7 +8,7 @@ notifications:
 script:
   - npm run build-prod
 before_deploy:
-  - npm i now --no-save
+  - npm i now@1.0.0 --no-save
 deploy:
   provider: script
   script: npm run deploy
