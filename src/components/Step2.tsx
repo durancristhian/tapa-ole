@@ -57,18 +57,14 @@ function Step2() {
     }
 
     localStorage.setItem('form', JSON.stringify(newForm))
-  }, [currentTheme])
 
-  useEffect(() => {
-    const makePreview = async () => {
+    setTimeout(() => {
       if (exportRef.current) {
-        const newPreview = await domtoimage.toJpeg(exportRef.current)
-
-        setPreview(newPreview)
+        domtoimage.toPng(exportRef.current).then(newPreview => {
+          setPreview(newPreview)
+        })
       }
-    }
-
-    setTimeout(makePreview, 3000)
+    }, 3000)
   }, [currentTheme])
 
   return (
