@@ -9,6 +9,7 @@ import Button from './Button'
 import Loading from './Loading'
 import Themes, { ITheme } from './Themes'
 
+const gradient = require('../assets/gradient.png')
 const ole = require('../assets/ole.png')
 const powerade = require('../assets/powerade.png')
 
@@ -43,16 +44,14 @@ function Step2() {
   const [preview, setPreview] = useState<HTMLCanvasElement | null>(null)
   const history = useHistory()
   const download = () => {
-    if (exportRef.current) {
-      const link = document.createElement('a')
-      link.download = 'tapa-ole.jpeg'
+    const link = document.createElement('a')
+    link.download = 'tapa-ole.jpeg'
 
-      if (preview) {
-        link.href = preview.toDataURL()
-      }
-
-      link.click()
+    if (preview) {
+      link.href = preview.toDataURL()
     }
+
+    link.click()
   }
   const onChangeTheme = (theme: ITheme) => {
     setPreview(null)
@@ -82,7 +81,7 @@ function Step2() {
       }
     }
 
-    setTimeout(makePreview, 1000)
+    setTimeout(makePreview, 3000)
   }, [currentTheme])
 
   return (
@@ -107,7 +106,10 @@ function Step2() {
                 style={{ paddingRight: 64, paddingTop: 64, width: 400 }}
               />
             </div>
-            <div className="absolute bottom-0 font-semibold gradient italic leading-none left-0 pb-8 px-4 right-0 text-center text-shadow text-white z-10">
+            <div
+              className="absolute bg-center bg-cover bottom-0 font-semibold gradient italic leading-none left-0 pb-8 px-4 right-0 text-center text-shadow text-white z-10"
+              style={{ backgroundImage: `url(${gradient})` }}
+            >
               <h1
                 className="font-oswald mb-8 uppercase"
                 style={{ ...currentTheme.styles.title, fontSize: 150 }}
