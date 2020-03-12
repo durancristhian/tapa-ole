@@ -1,4 +1,6 @@
+import classnames from 'classnames'
 import domtoimage from 'dom-to-image'
+import html2canvas from 'html2canvas'
 import React, { useEffect, useState } from 'react'
 import { FiArrowLeft, FiDownload } from 'react-icons/fi'
 import { useHistory } from 'react-router-dom'
@@ -37,8 +39,9 @@ function Step2() {
     localStorage.getItem('form') || ''
   )
   const exportRef = React.createRef<HTMLDivElement>()
+  const canvasContainerRef = React.createRef<HTMLDivElement>()
   const [currentTheme, setTheme] = useState(theme || themes[0])
-  const [preview, setPreview] = useState('')
+  const [preview, setPreview] = useState(false)
   const history = useHistory()
   const download = async () => {
     if (exportRef.current) {
@@ -58,13 +61,20 @@ function Step2() {
 
     localStorage.setItem('form', JSON.stringify(newForm))
 
-    setTimeout(() => {
-      if (exportRef.current) {
-        domtoimage.toPng(exportRef.current).then(newPreview => {
-          setPreview(newPreview)
-        })
+    const makePreview = async () => {
+      if (exportRef.current && canvasContainerRef.current) {
+        const canvas = await html2canvas(exportRef.current)
+        canvas.style.height = '100%'
+        canvas.style.width = '100%'
+
+        canvasContainerRef.current.innerHTML = ''
+        canvasContainerRef.current.appendChild(canvas)
+
+        setPreview(true)
       }
-    }, 3000)
+    }
+
+    makePreview()
   }, [currentTheme])
 
   return (
@@ -103,13 +113,13 @@ function Step2() {
       </div>
       <div className="mb-8">
         {!preview && <Loading message="Generando preview..." />}
-        {preview && (
-          <img
-            src={preview}
-            alt="Previsualización"
-            className="border-4 border-white shadow-xl w-full"
-          />
-        )}
+        <div
+          className={classnames([
+            'border-4 border-white shadow-xl',
+            !preview ? 'visually-hidden' : '',
+          ])}
+          ref={canvasContainerRef}
+        />
       </div>
       <Themes themes={themes} currentTheme={currentTheme} setTheme={setTheme} />
       <div className="flex justify-between mt-8">
