@@ -9,6 +9,8 @@ module.exports = {
     },
   },
   variants: {
+    borderColor: ['focus', 'focus-within', 'hover'],
+    boxShadow: ['focus', 'focus-within'],
     opacity: ['disabled'],
   },
 }

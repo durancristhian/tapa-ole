@@ -19,21 +19,29 @@ export default function InputRadio({
 }: IProps) {
   return (
     <label
-      htmlFor={value}
+      htmlFor={`${name}-${text}`}
       className={classnames([
         'border-2 border-gray-300 cursor-pointer flex items-center mr-4 px-4 py-2 rounded',
+        'focus-within:border-gray-600 focus-within:outline-none focus-within:shadow-outline hover:border-gray-600',
         selected ? 'bg-gray-300 border-gray-600' : null,
       ])}
     >
       <input
         className="visually-hidden"
-        type="radio"
+        id={`${name}-${text}`}
         name={name}
-        id={value}
-        onChange={() => onChange()}
+        onChange={() => {
+          onChange()
+        }}
+        type="radio"
+        value={value}
       />
-      {selected && <FiCheck />}
-      <p className="ml-2">{text}</p>
+      {selected && (
+        <span className="mr-2">
+          <FiCheck />
+        </span>
+      )}
+      <span>{text}</span>
     </label>
   )
 }

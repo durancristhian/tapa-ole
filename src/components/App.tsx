@@ -1,28 +1,21 @@
-import React, { lazy, Suspense } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React, { useState } from 'react'
 import 'typeface-inter'
+import 'typeface-oswald'
+import 'typeface-roboto-condensed'
+import Form, { defaultFormData, IFormData } from './Form'
 import Header from './Header'
-import Loading from './Loading'
+import Preview from './Preview'
 
-const Step1 = lazy(() => import('./Step1'))
-const Step2 = lazy(() => import('./Step2'))
+export default function App() {
+  const [previewData, setPreviewData] = useState<IFormData>(defaultFormData)
 
-function App() {
   return (
     <div className="font-body text-gray-800">
       <Header />
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <Suspense fallback={<Loading />}>
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component={Step1} />
-              <Route path="/preview" component={Step2} />
-            </Switch>
-          </BrowserRouter>
-        </Suspense>
+        <Form updatePreview={setPreviewData} />
+        <Preview previewData={previewData} />
       </div>
     </div>
   )
 }
-
-export default App

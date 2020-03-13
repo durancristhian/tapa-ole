@@ -2,29 +2,26 @@ import classnames from 'classnames'
 import React from 'react'
 
 interface IProps {
-  label: string
   id: string
-  onChange: React.Dispatch<React.SetStateAction<any>>
+  label: string
+  onChange: Function
   value: string
 }
 
-function InputText({ label, id, onChange, value }: IProps) {
+export default function InputText({ id, label, onChange, value }: IProps) {
   return (
-    <label htmlFor={id} className="flex flex-col my-4 w-full">
+    <label htmlFor={name} className="flex flex-col my-4 w-full">
       <span className="text-gray-600">{label}</span>
       <input
         type="text"
         className={classnames([
           'border-2 border-gray-300 mt-1 p-2 rounded',
-          'focus:outline-none focus:border-gray-600',
+          'focus:border-gray-600 focus:outline-none focus:shadow-outline',
         ])}
-        name={id}
         id={id}
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => onChange(id, e.target.value)}
       />
     </label>
   )
 }
-
-export default InputText
