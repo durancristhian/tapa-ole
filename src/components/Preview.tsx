@@ -19,7 +19,7 @@ export default function Preview({ previewData }: IProps) {
 
   const [preview, setPreview] = useState<HTMLCanvasElement | null>()
 
-  const isFormFulfilled = previewData && isFulfilled(previewData)
+  const isFormFulfilled = isFulfilled(previewData)
 
   const onDownloadClick = () => {
     canvas2image.saveAsJPEG(preview)
@@ -41,35 +41,36 @@ export default function Preview({ previewData }: IProps) {
       }
     }
 
-    makePreview()
-  }, [isFormFulfilled])
+    setTimeout(makePreview, 100)
+  }, [previewData])
+
+  if (!isFormFulfilled) return <></>
 
   return (
-    isFormFulfilled && (
-      <>
-        <HiddenPreview exportRef={exportRef} previewData={previewData} />
-        <div className="my-4">
-          {!preview && (
-            <Loading>
-              <p>Generando preview...</p>
-            </Loading>
-          )}
-          <div
-            className={classnames([
-              'border-4 border-white shadow-xl',
-              !preview ? 'visually-hidden' : '',
-            ])}
-            ref={canvasContainerRef}
-          />
-        </div>
-        <div className="text-right">
-          <Button type="button" onClick={onDownloadClick} disabled={!preview}>
-            <span className="mr-2">Descargar</span>
-            <FiDownload />
-          </Button>
-        </div>
-      </>
-    )
+    <>
+      <HiddenPreview exportRef={exportRef} previewData={previewData} />
+      <div className="my-4">
+        {!preview && (
+          <Loading>
+            <p>Generando preview...</p>
+          </Loading>
+        )}
+        <div
+          className={classnames([
+            'border-4 border-white shadow-xl',
+            !preview ? 'visually-hidden' : '',
+          ])}
+          ref={canvasContainerRef}
+          tabIndex={-1}
+        />
+      </div>
+      <div className="text-center">
+        <Button type="button" onClick={onDownloadClick} disabled={!preview}>
+          <span className="mr-2">Descargar</span>
+          <FiDownload />
+        </Button>
+      </div>
+    </>
   )
 }
 

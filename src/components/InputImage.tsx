@@ -76,6 +76,7 @@ export default function InputImage({ label, id, image, onChange }: IProps) {
         id={id}
         onChange={handleOnChange}
         ref={inputRef}
+        tabIndex={-1}
         type="file"
       />
     </>

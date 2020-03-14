@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputImage from './InputImage'
 import InputText from './InputText'
 import OptionsSelector from './OptionsSelector'
@@ -57,6 +57,14 @@ export default function Form({ updatePreview }: IProps) {
         label="Fondo"
         onChange={onFieldChange}
       ></InputImage>
+      <OptionsSelector
+        id="sponsor"
+        name="sponsor"
+        onChange={onFieldChange}
+        selectedOption={formData.sponsor}
+        title="Sponsor"
+        options={SPONSORS}
+      />
     </>
   )
 }
@@ -66,17 +74,37 @@ export interface IFormData {
   title: string
   titleColor: string
   titleSize: string
+  sponsor: string
   subtitle: string
 }
 
+const SPONSORS = [
+  {
+    text: 'Powerade',
+    value: 'powerade',
+  },
+  {
+    text: 'Cimes',
+    value: 'cimes',
+  },
+  {
+    text: 'Quilmes',
+    value: 'quilmes',
+  },
+]
+
 const TITLE_COLORS = [
   {
-    text: 'Clásico',
+    text: 'Verde',
     value: '#b1c903',
   },
   {
-    text: 'Alternativo',
+    text: 'Amarillo',
     value: '#faaf00',
+  },
+  {
+    text: 'Blanco',
+    value: '#fff',
   },
 ]
 
@@ -100,5 +128,6 @@ export const defaultFormData = {
   title: '',
   titleColor: TITLE_COLORS[0].value,
   titleSize: TITLE_SIZES[0].value,
+  sponsor: SPONSORS[0].value,
   subtitle: '',
 }
