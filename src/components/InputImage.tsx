@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export default function InputImage({ label, id, image, onChange }: IProps) {
-  const inputRef = React.createRef<HTMLInputElement>()
+  const labelRef = React.createRef<HTMLLabelElement>()
   const clearImage = (event: React.MouseEvent<HTMLButtonElement>) => {
     event?.preventDefault()
 
@@ -33,20 +33,20 @@ export default function InputImage({ label, id, image, onChange }: IProps) {
 
   return (
     <>
-      <label htmlFor={id} className="flex flex-col my-4">
+      <label htmlFor={id} className="flex flex-col my-8" ref={labelRef}>
         <span className="text-gray-600">{label}</span>
         {!image && (
           <button
             className={classnames([
               'border-2 border-dashed border-gray-300 flex items-center justify-center h-64 mt-1 rounded w-full',
-              'focus:border-gray-600 focus:outline-none focus:shadow-outline',
+              'focus:border-gray-600 focus:outline-none focus:shadow-outline hover:border-gray-600',
               'duration-150 ease-in-out transition',
             ])}
             type="button"
-            onClick={() => inputRef.current?.click()}
+            onClick={() => labelRef.current?.click()}
           >
             <FiUpload />
-            <span className="ml-2">Agregar imágen</span>
+            <span>&nbsp;&nbsp;Agregar imágen</span>
           </button>
         )}
         {image && (
@@ -75,7 +75,6 @@ export default function InputImage({ label, id, image, onChange }: IProps) {
         className="visually-hidden"
         id={id}
         onChange={handleOnChange}
-        ref={inputRef}
         tabIndex={-1}
         type="file"
       />

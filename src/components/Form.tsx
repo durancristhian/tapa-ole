@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import InputImage from './InputImage'
 import InputText from './InputText'
 import OptionsSelector from './OptionsSelector'
+import useDeepCompareEffect from 'use-deep-compare-effect'
 
 interface IProps {
   updatePreview: Function
@@ -17,7 +18,7 @@ export default function Form({ updatePreview }: IProps) {
     })
   }
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     updatePreview(formData)
   }, [formData])
 
@@ -34,7 +35,7 @@ export default function Form({ updatePreview }: IProps) {
         name="titleSize"
         onChange={onFieldChange}
         selectedOption={formData.titleSize}
-        title="Tamaño del título"
+        title="Tamaño"
         options={TITLE_SIZES}
       />
       <OptionsSelector
@@ -42,7 +43,7 @@ export default function Form({ updatePreview }: IProps) {
         name="titleColor"
         onChange={onFieldChange}
         selectedOption={formData.titleColor}
-        title="Color del título"
+        title="Color"
         options={TITLE_COLORS}
       />
       <InputText

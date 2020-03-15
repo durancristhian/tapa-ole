@@ -2,8 +2,9 @@
 import canvas2image from 'canvas2image-module'
 import classnames from 'classnames'
 import html2canvas from 'html2canvas'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FiDownload } from 'react-icons/fi'
+import useDeepCompareEffect from 'use-deep-compare-effect'
 import Button from './Button'
 import { IFormData } from './Form'
 import HiddenPreview from './HiddenPreview'
@@ -17,7 +18,7 @@ export default function Preview({ previewData }: IProps) {
   const exportRef = React.createRef<HTMLDivElement>()
   const canvasContainerRef = React.createRef<HTMLDivElement>()
 
-  const [preview, setPreview] = useState<HTMLCanvasElement | null>()
+  const [preview, setPreview] = useState<HTMLCanvasElement>()
 
   const isFormFulfilled = isFulfilled(previewData)
 
@@ -25,7 +26,7 @@ export default function Preview({ previewData }: IProps) {
     canvas2image.saveAsJPEG(preview)
   }
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const makePreview = async () => {
       if (exportRef.current && canvasContainerRef.current) {
         const canvas = await html2canvas(exportRef.current, {
@@ -41,7 +42,11 @@ export default function Preview({ previewData }: IProps) {
       }
     }
 
-    setTimeout(makePreview, 100)
+    makePreview()
+
+    /* return () => {
+      setPreview(undefined)
+    } */
   }, [previewData])
 
   if (!isFormFulfilled) return <></>
@@ -49,7 +54,7 @@ export default function Preview({ previewData }: IProps) {
   return (
     <>
       <HiddenPreview exportRef={exportRef} previewData={previewData} />
-      <div className="my-4">
+      <div className="my-8">
         {!preview && (
           <Loading>
             <p>Generando preview...</p>
@@ -64,10 +69,10 @@ export default function Preview({ previewData }: IProps) {
           tabIndex={-1}
         />
       </div>
-      <div className="text-center">
+      <div className="my-8 text-center">
         <Button type="button" onClick={onDownloadClick} disabled={!preview}>
-          <span className="mr-2">Descargar</span>
           <FiDownload />
+          <span>&nbsp;&nbsp;Descargar</span>
         </Button>
       </div>
     </>

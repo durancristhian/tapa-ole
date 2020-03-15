@@ -1,5 +1,8 @@
 import React from 'react'
+// @ts-ignore
+import sponsors from '../assets/sponsors/*.png'
 import { IFormData } from './Form'
+import VisuallyHidden from './VisuallyHidden'
 
 interface IProps {
   exportRef: React.Ref<HTMLDivElement>
@@ -13,7 +16,7 @@ export default function HiddenPreview({
   const sponsorConfig = SPONSORS_CONFIG[sponsor]
 
   return (
-    <div className="visually-hidden" tabIndex={-1}>
+    <VisuallyHidden tabIndex={-1}>
       <div style={{ height: 1500, width: 1200 }} ref={exportRef}>
         <div className="flex flex-col h-full items-center justify-center relative w-full">
           <div
@@ -38,7 +41,7 @@ export default function HiddenPreview({
           </div>
         </div>
       </div>
-    </div>
+    </VisuallyHidden>
   )
 }
 
@@ -59,7 +62,7 @@ const SPONSORS_CONFIG: ILogoConfig = {
     style: {
       width: 350,
     },
-    img: require('../assets/sponsors/cimes.png'),
+    img: sponsors['cimes'],
   },
   quilmes: {
     style: {
@@ -67,7 +70,7 @@ const SPONSORS_CONFIG: ILogoConfig = {
       paddingTop: 50,
       width: 300,
     },
-    img: require('../assets/sponsors/quilmes.png'),
+    img: sponsors['quilmes'],
   },
   powerade: {
     style: {
@@ -75,6 +78,6 @@ const SPONSORS_CONFIG: ILogoConfig = {
       paddingTop: 50,
       width: 400,
     },
-    img: require('../assets/sponsors/powerade.png'),
+    img: sponsors['powerade'],
   },
 }

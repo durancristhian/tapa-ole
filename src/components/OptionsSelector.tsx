@@ -24,10 +24,10 @@ export default function OptionsSelector({
   options,
 }: IProps) {
   return (
-    <div className="flex flex-col my-4">
+    <div className="flex flex-col my-8">
       {title && <span className="text-gray-600">{title}</span>}
       <div className="flex mt-1">
-        {options.map((opt, i) => (
+        {options.map(opt => (
           <InputRadio
             {...opt}
             name={name}
