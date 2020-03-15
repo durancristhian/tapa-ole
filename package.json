@@ -1,6 +1,6 @@
 {
   "name": "tapa-ole",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉",
   "scripts": {
     "alias": "now alias",
