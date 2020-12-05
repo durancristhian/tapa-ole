@@ -1,5 +1,5 @@
 // @ts-ignore
-import canvas2image from 'canvas2image-module'
+import canvas2image from 'canvas2image-2'
 import classnames from 'classnames'
 import html2canvas from 'html2canvas'
 import React, { useState } from 'react'
@@ -23,7 +23,7 @@ export default function Preview({ previewData }: IProps) {
   const isFormFulfilled = isFulfilled(previewData)
 
   const onDownloadClick = () => {
-    canvas2image.saveAsJPEG(preview)
+    canvas2image.saveAsPNG(preview)
   }
 
   useDeepCompareEffect(() => {
@@ -43,10 +43,6 @@ export default function Preview({ previewData }: IProps) {
     }
 
     makePreview()
-
-    /* return () => {
-      setPreview(undefined)
-    } */
   }, [previewData])
 
   if (!isFormFulfilled) return <></>

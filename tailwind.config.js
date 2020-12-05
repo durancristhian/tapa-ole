@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  purge: false,
   theme: {
     fontFamily: {
       body: ['Inter', ...defaultTheme.fontFamily.sans],
