@@ -10,7 +10,6 @@
     "contributors-add": "all-contributors add",
     "contributors-generate": "all-contributors generate",
     "dev": "parcel --port 3456 src/index.html",
-    "deploy": "cd dist && now --local-config=../now.json && cd ..",
     "start": "serve dist",
     "prebuild": "npm run clean-cache",
     "predev": "npm run clean-cache",
