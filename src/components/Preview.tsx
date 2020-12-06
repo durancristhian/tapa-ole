@@ -31,17 +31,21 @@ export default function Preview({ previewData }: IProps) {
   }
 
   useDeepCompareEffect(() => {
-    if (!isFormFulfilled) {
-      return
+    const makePreview = () => {
+      if (!isFormFulfilled) {
+        return
+      }
+
+      const hiddenPreview = document.getElementById('hidden-preview')
+
+      if (hiddenPreview) {
+        domtoimage.toJpeg(hiddenPreview).then(function(dataUrl) {
+          setPreview(dataUrl)
+        })
+      }
     }
 
-    const hiddenPreview = document.getElementById('hidden-preview')
-
-    if (hiddenPreview) {
-      domtoimage.toJpeg(hiddenPreview).then(function(dataUrl) {
-        setPreview(dataUrl)
-      })
-    }
+    setTimeout(makePreview, 100)
   }, [previewData])
 
   return (
