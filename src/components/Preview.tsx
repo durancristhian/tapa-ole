@@ -27,21 +27,34 @@ export default function Preview({ previewData }: IProps) {
   }
 
   useDeepCompareEffect(() => {
-    if (!exportRef.current || !isFormFulfilled) {
+    const viewportMeta = document.getElementById('viewportMeta')
+
+    if (!exportRef.current || !isFormFulfilled || !viewportMeta) {
       return
     }
 
-    html2canvas(exportRef.current).then(canvas => {
-      canvas.style.height = '100%'
-      canvas.style.width = '100%'
+    const vp = viewportMeta.getAttribute('content')
+    viewportMeta.setAttribute('content', 'width=1024')
 
-      if (canvasContainerRef.current) {
-        canvasContainerRef.current.innerHTML = ''
-        canvasContainerRef.current.appendChild(canvas)
+    html2canvas(exportRef.current)
+      .then(canvas => {
+        canvas.style.height = '100%'
+        canvas.style.width = '100%'
 
-        setPreview(canvas)
-      }
-    })
+        if (vp) {
+          viewportMeta.setAttribute('content', vp)
+        }
+
+        if (canvasContainerRef.current) {
+          canvasContainerRef.current.innerHTML = ''
+          canvasContainerRef.current.appendChild(canvas)
+
+          setPreview(canvas)
+        }
+      })
+      .catch(error => {
+        alert(error)
+      })
   }, [previewData])
 
   return (
