@@ -15,8 +15,8 @@ interface IProps {
 }
 
 export default function Preview({ previewData }: IProps) {
-  const exportRef = React.createRef<HTMLDivElement>()
-  const canvasContainerRef = React.createRef<HTMLDivElement>()
+  const exportRef = React.useRef<HTMLDivElement>(null)
+  const canvasContainerRef = React.useRef<HTMLDivElement>(null)
 
   const [preview, setPreview] = useState<HTMLCanvasElement>()
 
@@ -27,33 +27,21 @@ export default function Preview({ previewData }: IProps) {
   }
 
   useDeepCompareEffect(() => {
-    const makePreview = async () => {
-      try {
-        if (
-          exportRef.current &&
-          canvasContainerRef.current &&
-          isFormFulfilled
-        ) {
-          const canvas = await html2canvas(exportRef.current)
-          canvas.style.height = '100%'
-          canvas.style.width = '100%'
-
-          if (
-            canvasContainerRef.current &&
-            canvasContainerRef.current.innerHTML
-          ) {
-            canvasContainerRef.current.innerHTML = ''
-          }
-          canvasContainerRef.current.appendChild(canvas)
-
-          setPreview(canvas)
-        }
-      } catch (error) {
-        alert(error)
-      }
+    if (!exportRef.current || !isFormFulfilled) {
+      return
     }
 
-    makePreview()
+    html2canvas(exportRef.current).then(canvas => {
+      canvas.style.height = '100%'
+      canvas.style.width = '100%'
+
+      if (canvasContainerRef.current) {
+        canvasContainerRef.current.innerHTML = ''
+        canvasContainerRef.current.appendChild(canvas)
+
+        setPreview(canvas)
+      }
+    })
   }, [previewData])
 
   return (
@@ -65,16 +53,14 @@ export default function Preview({ previewData }: IProps) {
             <p>Generando preview...</p>
           </Loading>
         )}
-        {isFormFulfilled && (
-          <div
-            className={classnames([
-              'border-4 border-white shadow-xl',
-              !preview ? 'visually-hidden' : '',
-            ])}
-            ref={canvasContainerRef}
-            tabIndex={-1}
-          />
-        )}
+        <div
+          className={classnames([
+            'border-4 border-white shadow-xl',
+            !preview ? 'visually-hidden' : '',
+          ])}
+          ref={canvasContainerRef}
+          tabIndex={-1}
+        />
       </div>
       <div className="my-8 text-center">
         <Button
