@@ -41,10 +41,6 @@ export default function Preview({ previewData }: IProps) {
         canvas.style.height = '100%'
         canvas.style.width = '100%'
 
-        if (vp) {
-          viewportMeta.setAttribute('content', vp)
-        }
-
         if (canvasContainerRef.current) {
           canvasContainerRef.current.innerHTML = ''
           canvasContainerRef.current.appendChild(canvas)
@@ -54,6 +50,11 @@ export default function Preview({ previewData }: IProps) {
       })
       .catch(error => {
         alert(error)
+      })
+      .then(() => {
+        if (vp) {
+          viewportMeta.setAttribute('content', vp)
+        }
       })
   }, [previewData])
 
