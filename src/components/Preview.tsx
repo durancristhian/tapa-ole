@@ -29,9 +29,11 @@ export default function Preview({ previewData }: IProps) {
   useDeepCompareEffect(() => {
     const makePreview = async () => {
       if (exportRef.current && canvasContainerRef.current && isFormFulfilled) {
+        alert('before')
         const canvas = await html2canvas(exportRef.current, {
           logging: false,
-          windowWidth: 768,
+          height: 1500,
+          width: 1200,
         })
         canvas.style.height = '100%'
         canvas.style.width = '100%'
@@ -40,6 +42,7 @@ export default function Preview({ previewData }: IProps) {
         canvasContainerRef.current.appendChild(canvas)
 
         setPreview(canvas)
+        alert('after')
       }
     }
 
