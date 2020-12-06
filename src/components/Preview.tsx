@@ -1,7 +1,6 @@
 // @ts-ignore
-import canvas2image from 'canvas2image-2'
 import classnames from 'classnames'
-import html2canvas from 'html2canvas'
+import domtoimage from 'dom-to-image'
 import React, { useState } from 'react'
 import { FiDownload } from 'react-icons/fi'
 import useDeepCompareEffect from 'use-deep-compare-effect'
@@ -15,52 +14,39 @@ interface IProps {
 }
 
 export default function Preview({ previewData }: IProps) {
-  const exportRef = React.useRef<HTMLDivElement>(null)
-  const canvasContainerRef = React.useRef<HTMLDivElement>(null)
-
-  const [preview, setPreview] = useState<HTMLCanvasElement>()
-
+  const [preview, setPreview] = useState('')
   const isFormFulfilled = isFulfilled(previewData)
 
   const onDownloadClick = () => {
-    canvas2image.saveAsPNG(preview)
+    const hiddenPreview = document.getElementById('hidden-preview')
+
+    if (hiddenPreview) {
+      domtoimage.toJpeg(hiddenPreview).then(function(dataUrl) {
+        const link = document.createElement('a')
+        link.download = 'tapa-ole.jpeg'
+        link.href = dataUrl
+        link.click()
+      })
+    }
   }
 
   useDeepCompareEffect(() => {
-    const viewportMeta = document.getElementById('viewportMeta')
-
-    if (!exportRef.current || !isFormFulfilled || !viewportMeta) {
+    if (!isFormFulfilled) {
       return
     }
 
-    const vp = viewportMeta.getAttribute('content')
-    viewportMeta.setAttribute('content', 'width=1024')
+    const hiddenPreview = document.getElementById('hidden-preview')
 
-    html2canvas(exportRef.current)
-      .then(canvas => {
-        canvas.style.height = '100%'
-        canvas.style.width = '100%'
-
-        if (canvasContainerRef.current) {
-          canvasContainerRef.current.innerHTML = ''
-          canvasContainerRef.current.appendChild(canvas)
-
-          setPreview(canvas)
-        }
+    if (hiddenPreview) {
+      domtoimage.toJpeg(hiddenPreview).then(function(dataUrl) {
+        setPreview(dataUrl)
       })
-      .catch(error => {
-        alert(error)
-      })
-      .then(() => {
-        if (vp) {
-          viewportMeta.setAttribute('content', vp)
-        }
-      })
+    }
   }, [previewData])
 
   return (
     <>
-      <HiddenPreview exportRef={exportRef} previewData={previewData} />
+      <HiddenPreview previewData={previewData} />
       <div className="my-8">
         {isFormFulfilled && !preview && (
           <Loading>
@@ -70,11 +56,12 @@ export default function Preview({ previewData }: IProps) {
         <div
           className={classnames([
             'border-4 border-white shadow-xl',
-            !preview ? 'visually-hidden' : '',
+            !isFormFulfilled || !preview ? 'visually-hidden' : '',
           ])}
-          ref={canvasContainerRef}
           tabIndex={-1}
-        />
+        >
+          <img src={preview} alt="previe" className="block w-full" />
+        </div>
       </div>
       <div className="my-8 text-center">
         <Button
@@ -82,8 +69,8 @@ export default function Preview({ previewData }: IProps) {
           onClick={onDownloadClick}
           disabled={!preview || !isFormFulfilled}
         >
-          <FiDownload />
-          <span>&nbsp;&nbsp;Descargar</span>
+          <FiDownload style={{ marginRight: 8 }} />
+          <span>Descargar</span>
         </Button>
       </div>
     </>

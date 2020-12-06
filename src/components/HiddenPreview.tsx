@@ -5,19 +5,17 @@ import { IFormData } from './Form'
 import VisuallyHidden from './VisuallyHidden'
 
 interface IProps {
-  exportRef: React.Ref<HTMLDivElement>
   previewData: IFormData
 }
 
 export default function HiddenPreview({
-  exportRef,
   previewData: { background, sponsor, subtitle, title, titleColor, titleSize },
 }: IProps) {
   const sponsorConfig = SPONSORS_CONFIG[sponsor]
 
   return (
     <VisuallyHidden tabIndex={-1}>
-      <div style={{ height: 1500, width: 1200 }} ref={exportRef}>
+      <div style={{ height: 1500, width: 1200 }} id="hidden-preview">
         <div className="flex flex-col h-full items-center justify-center relative w-full">
           <div
             className="absolute bg-center bg-cover bottom-0 left-0 right-0 top-0 z-0"
