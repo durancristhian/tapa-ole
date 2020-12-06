@@ -19,7 +19,6 @@ export default function Preview({ previewData }: IProps) {
   const canvasContainerRef = React.createRef<HTMLDivElement>()
 
   const [preview, setPreview] = useState<HTMLCanvasElement>()
-  const [previewError, setPreviewError] = useState(null)
 
   const isFormFulfilled = isFulfilled(previewData)
 
@@ -34,10 +33,6 @@ export default function Preview({ previewData }: IProps) {
           const canvas = await html2canvas(exportRef.current, {
             logging: false,
             async: false,
-            height: 1500,
-            width: 1200,
-            windowHeight: 1500,
-            windowWidth: 1200,
           })
           canvas.style.height = '100%'
           canvas.style.width = '100%'
@@ -47,7 +42,7 @@ export default function Preview({ previewData }: IProps) {
 
           setPreview(canvas)
         } catch (error) {
-          setPreviewError(error)
+          alert(error)
         }
       }
     }
@@ -58,11 +53,6 @@ export default function Preview({ previewData }: IProps) {
   return (
     <>
       <HiddenPreview exportRef={exportRef} previewData={previewData} />
-      {previewError && (
-        <pre>
-          <code>{JSON.stringify(previewError, null, 2)}</code>
-        </pre>
-      )}
       <div className="my-8">
         {isFormFulfilled && !preview && (
           <Loading>
