@@ -31,6 +31,7 @@ export default function Preview({ previewData }: IProps) {
       if (exportRef.current && canvasContainerRef.current && isFormFulfilled) {
         const canvas = await html2canvas(exportRef.current, {
           logging: false,
+          windowWidth: 768,
         })
         canvas.style.height = '100%'
         canvas.style.width = '100%'
