@@ -33,6 +33,11 @@ export default function Preview({ previewData }: IProps) {
         try {
           const canvas = await html2canvas(exportRef.current, {
             logging: false,
+            async: false,
+            height: 1500,
+            width: 1200,
+            windowHeight: 1500,
+            windowWidth: 1200,
           })
           canvas.style.height = '100%'
           canvas.style.width = '100%'
