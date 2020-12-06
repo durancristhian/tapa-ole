@@ -28,25 +28,31 @@ export default function Preview({ previewData }: IProps) {
 
   useDeepCompareEffect(() => {
     const makePreview = async () => {
-      if (exportRef.current && canvasContainerRef.current && isFormFulfilled) {
-        try {
-          const canvas = await html2canvas(exportRef.current, {
-            logging: false,
-          })
+      try {
+        if (
+          exportRef.current &&
+          canvasContainerRef.current &&
+          isFormFulfilled
+        ) {
+          const canvas = await html2canvas(exportRef.current)
           canvas.style.height = '100%'
           canvas.style.width = '100%'
 
-          canvasContainerRef.current.innerHTML = ''
+          if (
+            canvasContainerRef.current &&
+            canvasContainerRef.current.innerHTML
+          ) {
+            canvasContainerRef.current.innerHTML = ''
+          }
           canvasContainerRef.current.appendChild(canvas)
 
           setPreview(canvas)
-        } catch (error) {
-          alert(error)
         }
+      } catch (error) {
+        alert(error)
       }
     }
 
-    setTimeout(makePreview, 100)
     makePreview()
   }, [previewData])
 
