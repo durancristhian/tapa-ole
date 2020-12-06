@@ -26,7 +26,7 @@ export default function OptionsSelector({
   return (
     <div className="flex flex-col my-8">
       {title && <span className="text-gray-600">{title}</span>}
-      <div className="flex mt-1">
+      <div className="overflow-auto whitespace-no-wrap">
         {options.map(opt => (
           <InputRadio
             {...opt}

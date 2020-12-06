@@ -28,7 +28,7 @@ export default function Preview({ previewData }: IProps) {
 
   useDeepCompareEffect(() => {
     const makePreview = async () => {
-      if (exportRef.current && canvasContainerRef.current) {
+      if (exportRef.current && canvasContainerRef.current && isFormFulfilled) {
         const canvas = await html2canvas(exportRef.current, {
           logging: false,
         })
@@ -45,28 +45,32 @@ export default function Preview({ previewData }: IProps) {
     makePreview()
   }, [previewData])
 
-  if (!isFormFulfilled) return <></>
-
   return (
     <>
       <HiddenPreview exportRef={exportRef} previewData={previewData} />
       <div className="my-8">
-        {!preview && (
+        {isFormFulfilled && !preview && (
           <Loading>
             <p>Generando preview...</p>
           </Loading>
         )}
-        <div
-          className={classnames([
-            'border-4 border-white shadow-xl',
-            !preview ? 'visually-hidden' : '',
-          ])}
-          ref={canvasContainerRef}
-          tabIndex={-1}
-        />
+        {isFormFulfilled && (
+          <div
+            className={classnames([
+              'border-4 border-white shadow-xl',
+              !preview ? 'visually-hidden' : '',
+            ])}
+            ref={canvasContainerRef}
+            tabIndex={-1}
+          />
+        )}
       </div>
       <div className="my-8 text-center">
-        <Button type="button" onClick={onDownloadClick} disabled={!preview}>
+        <Button
+          type="button"
+          onClick={onDownloadClick}
+          disabled={!preview || !isFormFulfilled}
+        >
           <FiDownload />
           <span>&nbsp;&nbsp;Descargar</span>
         </Button>
