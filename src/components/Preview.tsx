@@ -18,16 +18,10 @@ export default function Preview({ previewData }: IProps) {
   const isFormFulfilled = isFulfilled(previewData)
 
   const onDownloadClick = () => {
-    const hiddenPreview = document.getElementById('hidden-preview')
-
-    if (hiddenPreview) {
-      domtoimage.toJpeg(hiddenPreview).then(function(dataUrl) {
-        const link = document.createElement('a')
-        link.download = 'tapa-ole.jpeg'
-        link.href = dataUrl
-        link.click()
-      })
-    }
+    const link = document.createElement('a')
+    link.download = 'tapa-ole.jpeg'
+    link.href = preview
+    link.click()
   }
 
   useDeepCompareEffect(() => {
