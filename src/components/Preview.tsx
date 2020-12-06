@@ -19,6 +19,7 @@ export default function Preview({ previewData }: IProps) {
   const canvasContainerRef = React.createRef<HTMLDivElement>()
 
   const [preview, setPreview] = useState<HTMLCanvasElement>()
+  const [previewError, setPreviewError] = useState(null)
 
   const isFormFulfilled = isFulfilled(previewData)
 
@@ -29,20 +30,20 @@ export default function Preview({ previewData }: IProps) {
   useDeepCompareEffect(() => {
     const makePreview = async () => {
       if (exportRef.current && canvasContainerRef.current && isFormFulfilled) {
-        alert('before')
-        const canvas = await html2canvas(exportRef.current, {
-          logging: false,
-          height: 1500,
-          width: 1200,
-        })
-        canvas.style.height = '100%'
-        canvas.style.width = '100%'
+        try {
+          const canvas = await html2canvas(exportRef.current, {
+            logging: false,
+          })
+          canvas.style.height = '100%'
+          canvas.style.width = '100%'
 
-        canvasContainerRef.current.innerHTML = ''
-        canvasContainerRef.current.appendChild(canvas)
+          canvasContainerRef.current.innerHTML = ''
+          canvasContainerRef.current.appendChild(canvas)
 
-        setPreview(canvas)
-        alert('after')
+          setPreview(canvas)
+        } catch (error) {
+          setPreviewError(error)
+        }
       }
     }
 
@@ -52,6 +53,11 @@ export default function Preview({ previewData }: IProps) {
   return (
     <>
       <HiddenPreview exportRef={exportRef} previewData={previewData} />
+      {previewError && (
+        <pre>
+          <code>{JSON.stringify(previewError, null, 2)}</code>
+        </pre>
+      )}
       <div className="my-8">
         {isFormFulfilled && !preview && (
           <Loading>
