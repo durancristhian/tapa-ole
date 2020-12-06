@@ -22,7 +22,7 @@ export default function HiddenPreview({
           <div
             className="absolute bg-center bg-cover bottom-0 left-0 right-0 top-0 z-0"
             style={{ backgroundImage: `url(${background})` }}
-          ></div>
+          />
           <div className="absolute flex justify-between items-start left-0 right-0 top-0 z-10">
             <img src={ASSETS.logo} style={{ height: 325, width: 525 }} />
             <img src={sponsorConfig.img} style={{ ...sponsorConfig.style }} />
