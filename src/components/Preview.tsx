@@ -46,6 +46,7 @@ export default function Preview({ previewData }: IProps) {
       }
     }
 
+    setTimeout(makePreview, 100)
     makePreview()
   }, [previewData])
 
