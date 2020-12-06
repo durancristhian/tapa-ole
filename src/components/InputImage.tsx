@@ -25,6 +25,8 @@ export default function InputImage({ label, id, image, onChange }: IProps) {
 
       reader.onloadend = () => {
         onChange(id, reader.result)
+
+        event.target.value = ''
       }
 
       reader.readAsDataURL(file)
