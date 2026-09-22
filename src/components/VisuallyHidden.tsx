@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface IProps extends React.Props<HTMLDivElement> {
+interface IProps extends React.PropsWithChildren {
   tabIndex?: number
 }
 

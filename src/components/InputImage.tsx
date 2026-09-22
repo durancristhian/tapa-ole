@@ -52,12 +52,12 @@ export default function InputImage({ label, id, image, onChange }: IProps) {
           </button>
         )}
         {image && (
-          <div className="flex justify-center mt-1">
-            <div className="max-h-64 mx-auto relative">
+          <div className="flex h-64 justify-center mt-1">
+            <div className="h-full mx-auto relative w-full">
               <img
                 src={image}
                 alt="Previsualización"
-                className="border-4 border-white shadow-xl w-full"
+                className="border-4 border-white h-full object-contain shadow-xl w-full"
               />
               <button
                 className={classnames([

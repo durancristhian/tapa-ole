@@ -2,18 +2,25 @@
 
 📰 Armá tu tapa de Olé sin regalar tus datos y subiendo tu propia foto 😉
 
-[tapa-ole.cduran.now.sh](https://tapa-ole.cduran.now.sh/)
+[tapa-ole.vercel.app](https://tapa-ole.vercel.app/)
 
 ## Development
 
-- Run the following commands:
+- Use Node 24 and install the dependencies:
 
   ```bash
-  # install deps
-  npm i
+  nvm use
+  npm install
+  npm start
+  ```
 
-  # dev mode
-  npm run dev
+  The app runs at [http://localhost:3456](http://localhost:3456).
+
+- To run the checks and create a production build:
+
+  ```bash
+  npm run typecheck
+  npm run build
   ```
 
 ## Licence

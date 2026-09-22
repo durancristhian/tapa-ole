@@ -20,7 +20,7 @@ export default function InputText({ id, label, onChange, value }: IProps) {
         ])}
         id={id}
         value={value}
-        onChange={e => onChange(id, e.target.value)}
+        onChange={(e) => onChange(id, e.target.value)}
       />
     </label>
   )

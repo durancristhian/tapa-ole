@@ -1,6 +1,8 @@
 import classnames from 'classnames'
 import React from 'react'
-const { version } = require('../../package.json')
+import packageMetadata from '../../package.json'
+
+const { version } = packageMetadata
 
 export default function Header() {
   return (

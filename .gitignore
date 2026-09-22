@@ -72,8 +72,9 @@ web_modules/
 .env
 .env.test
 
-# parcel-bundler cache (https://parceljs.org/)
+# Parcel cache
 .cache
+.parcel-cache
 
 # Next.js build output
 .next

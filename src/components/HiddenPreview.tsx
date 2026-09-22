@@ -1,8 +1,21 @@
 import React from 'react'
-// @ts-ignore
-import sponsors from '../assets/sponsors/*.png'
 import { IFormData } from './Form'
 import VisuallyHidden from './VisuallyHidden'
+
+const gradient = new URL('../assets/gradient.png', import.meta.url).toString()
+const logo = new URL('../assets/ole.png', import.meta.url).toString()
+const cimes = new URL(
+  '../assets/sponsors/cimes.png',
+  import.meta.url
+).toString()
+const powerade = new URL(
+  '../assets/sponsors/powerade.png',
+  import.meta.url
+).toString()
+const quilmes = new URL(
+  '../assets/sponsors/quilmes.png',
+  import.meta.url
+).toString()
 
 interface IProps {
   previewData: IFormData
@@ -44,14 +57,14 @@ export default function HiddenPreview({
 }
 
 const ASSETS = {
-  gradient: require('../assets/gradient.png'),
-  logo: require('../assets/ole.png'),
+  gradient,
+  logo,
 }
 
 interface ILogoConfig {
   [name: string]: {
     style: React.CSSProperties
-    img: any
+    img: string
   }
 }
 
@@ -60,7 +73,7 @@ const SPONSORS_CONFIG: ILogoConfig = {
     style: {
       width: 350,
     },
-    img: sponsors['cimes'],
+    img: cimes,
   },
   quilmes: {
     style: {
@@ -68,7 +81,7 @@ const SPONSORS_CONFIG: ILogoConfig = {
       paddingTop: 50,
       width: 300,
     },
-    img: sponsors['quilmes'],
+    img: quilmes,
   },
   powerade: {
     style: {
@@ -76,6 +89,6 @@ const SPONSORS_CONFIG: ILogoConfig = {
       paddingTop: 50,
       width: 400,
     },
-    img: sponsors['powerade'],
+    img: powerade,
   },
 }

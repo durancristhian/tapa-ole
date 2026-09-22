@@ -1,17 +1,20 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: false,
+  content: ['./src/**/*.{html,ts,tsx}'],
   theme: {
-    fontFamily: {
-      body: ['Inter', ...defaultTheme.fontFamily.sans],
-      oswald: ['Oswald', ...defaultTheme.fontFamily.sans],
-      'roboto-condensed': ['Roboto Condensed', ...defaultTheme.fontFamily.sans],
+    extend: {
+      boxShadow: {
+        outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
+      },
+      fontFamily: {
+        body: ['Inter', ...defaultTheme.fontFamily.sans],
+        oswald: ['Oswald', ...defaultTheme.fontFamily.sans],
+        'roboto-condensed': [
+          'Roboto Condensed',
+          ...defaultTheme.fontFamily.sans,
+        ],
+      },
     },
-  },
-  variants: {
-    borderColor: ['focus', 'focus-within', 'hover'],
-    boxShadow: ['focus', 'focus-within'],
-    opacity: ['disabled'],
   },
 }

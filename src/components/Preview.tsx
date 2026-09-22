@@ -1,9 +1,7 @@
-// @ts-ignore
 import classnames from 'classnames'
 import domtoimage from 'dom-to-image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiDownload } from 'react-icons/fi'
-import useDeepCompareEffect from 'use-deep-compare-effect'
 import Button from './Button'
 import { IFormData } from './Form'
 import HiddenPreview from './HiddenPreview'
@@ -24,23 +22,33 @@ export default function Preview({ previewData }: IProps) {
     link.click()
   }
 
-  useDeepCompareEffect(() => {
-    const makePreview = () => {
-      if (!isFormFulfilled) {
-        return
-      }
+  useEffect(() => {
+    if (!isFormFulfilled) {
+      setPreview('')
+      return
+    }
 
+    let cancelled = false
+    const makePreview = async () => {
       const hiddenPreview = document.getElementById('hidden-preview')
 
       if (hiddenPreview) {
-        domtoimage.toJpeg(hiddenPreview).then(function(dataUrl) {
+        await document.fonts.ready
+        const dataUrl = await domtoimage.toJpeg(hiddenPreview)
+
+        if (!cancelled) {
           setPreview(dataUrl)
-        })
+        }
       }
     }
 
-    setTimeout(makePreview, 100)
-  }, [previewData])
+    const timeoutId = window.setTimeout(makePreview, PREVIEW_DELAY_MS)
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(timeoutId)
+    }
+  }, [isFormFulfilled, previewData])
 
   return (
     <>
@@ -58,7 +66,13 @@ export default function Preview({ previewData }: IProps) {
           ])}
           tabIndex={-1}
         >
-          <img src={preview} alt="previe" className="block w-full" />
+          {preview && (
+            <img
+              src={preview}
+              alt="Previsualización"
+              className="block w-full"
+            />
+          )}
         </div>
       </div>
       <div className="my-8 text-center">
@@ -76,3 +90,5 @@ export default function Preview({ previewData }: IProps) {
 }
 
 const isFulfilled = (obj: Object) => obj && Object.values(obj).every(Boolean)
+
+const PREVIEW_DELAY_MS = 200

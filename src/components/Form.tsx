@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputImage from './InputImage'
 import InputText from './InputText'
 import OptionsSelector from './OptionsSelector'
-import useDeepCompareEffect from 'use-deep-compare-effect'
 
 interface IProps {
   updatePreview: Function
@@ -18,9 +17,9 @@ export default function Form({ updatePreview }: IProps) {
     })
   }
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     updatePreview(formData)
-  }, [formData])
+  }, [formData, updatePreview])
 
   return (
     <>
